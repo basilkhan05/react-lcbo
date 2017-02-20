@@ -11,11 +11,14 @@ class Home extends React.Component {
       productsData: []
     }
   }
-
+  // turnt - 'order=alcohol_content.desc,price_in_cents.asc'
+  //classy -  'where=is_vqa'
   // get Product Data 
   getHomeData = () => {
     callLCBOApi('/products?'
-      + 'order=alcohol_content.desc,price_in_cents.asc'
+      + 'per_page=100&'
+      + 'where=is_vqa&'
+      + 'order=price_in_cents.desc'
       , this);
   }
 
