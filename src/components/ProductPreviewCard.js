@@ -1,8 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 import noImage from '../../public/no-image.jpeg'
-
-
+import './styles/ProductPreviewCard.css'
 
 class ProductPreviewCard extends React.Component {
 
@@ -12,7 +11,7 @@ class ProductPreviewCard extends React.Component {
 
     return (
 
-  <Card>
+  <Card className="product-preview-card">
     <Image src={productPreview.image_thumb_url ? productPreview.image_thumb_url : noImage} />
     <Card.Content>
       <Card.Header>{productPreview.name}</Card.Header>

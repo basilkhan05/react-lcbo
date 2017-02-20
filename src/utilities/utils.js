@@ -1,7 +1,6 @@
 const config = require('../../config/config');
 
 var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
 myHeaders.append("Authorization", config.access_token);
 
 var myInit = { method: 'GET',
@@ -40,8 +39,3 @@ export const callLCBOApi = function(query, that)  {
   });
 }
 
-const stitchLookup = {
-  HS: 'Hidden Stitch',
-  ST: 'Sew Through',
-  TS: 'Top Stitch'
-};
