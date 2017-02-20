@@ -23,7 +23,7 @@ export const callLCBOApi = function(query, that)  {
       // Set State to the Data in the response  
       response.json().then(function(data) {  
         that.setState({
-           productsData: data
+           productsData: data.result
         });
       });  
     }  

@@ -1,8 +1,7 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
-
-
-
+import { Grid, Segment } from 'semantic-ui-react'
+import ProductPreviewCard  from '../components/ProductPreviewCard'
 
 class Home extends React.Component {
     constructor(props){
@@ -15,7 +14,9 @@ class Home extends React.Component {
 
   // get Product Data 
   getHomeData = () => {
-    callLCBOApi('/products', this);
+    callLCBOApi('/products?'
+      + 'order=alcohol_content.desc,price_in_cents.asc'
+      , this);
   }
 
   componentDidMount(){
@@ -24,16 +25,18 @@ class Home extends React.Component {
 
   render() {
     return (
+      <Grid columns={4} stackable={true}>
 
-      <div>
-      
-        <div>
+        {this.state.productsData.map((product, idx) =>
+        <Grid.Column key={'product-' + idx}>
+          
+            <ProductPreviewCard productPreview={product} />
+          
+        </Grid.Column>
+        )}
 
-        <h1> Home Page </h1>
 
-        </div>
-
-      </div>
+      </Grid>
     );
   }
 }
