@@ -14,6 +14,9 @@ export const callLCBOApi = function(query, that)  {
     fetch(config.lcboapiURL+query ,myInit)
     .then(  
     function(response) { 
+      that.setState({
+           Loader: true
+        });
       if (response.status !== 200) {  
         console.log('There was a problem with the fetch. Status Code: ' +  
           response.status);  
@@ -23,7 +26,8 @@ export const callLCBOApi = function(query, that)  {
       // Set State to the Data in the response  
       response.json().then(function(data) {  
         that.setState({
-           productsData: data.result
+           productsData: data.result,
+           Loader: false
         });
       });  
     }  
@@ -35,3 +39,9 @@ export const callLCBOApi = function(query, that)  {
     alert(err);  
   });
 }
+
+const stitchLookup = {
+  HS: 'Hidden Stitch',
+  ST: 'Sew Through',
+  TS: 'Top Stitch'
+};
