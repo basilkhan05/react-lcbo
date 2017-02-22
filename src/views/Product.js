@@ -9,7 +9,7 @@ class Product extends React.Component {
     super(props);
 
     this.state = {
-      product_id: this.props.params.GTIN,
+      product_id: this.props.params.id,
       Loader: false,
       productsData: []
     }
@@ -28,14 +28,20 @@ class Product extends React.Component {
   }
 
   render() {
+    const productData = this.state.productsData;
     return (
       <div>
       <Grid columns={2} stackable={true}>
         
-        <div> </div>
+        <div>{productData.id} </div>
+        <div>{productData.name} </div>
+        <div>{productData.tags} </div>
+        <div>{productData.primary_category} </div>
+        <div>{productData.price_per_liter_of_alcohol_in_cents} </div>
+
 
       </Grid>
-      <Button primary fluid>LOAD MORE</Button>
+      
       </div>
     );
   }
