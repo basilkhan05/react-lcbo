@@ -12,7 +12,8 @@ var myInit = { method: 'GET',
 export const callLCBOApi = function(query, that)  {
     fetch(config.lcboapiURL+query ,myInit)
     .then(  
-    function(response) { 
+    function(response) {
+    console.log(response);
       that.setState({
            Loader: true
         });
