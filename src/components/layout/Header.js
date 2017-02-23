@@ -14,11 +14,11 @@ class Header extends Component {
 
     return (
       <div>
-       <Segment className="logo-section">
-           <Image className="logo-image" src={logo} />
-        </Segment>
 
         <Menu pointing secondary>
+        <Segment className="logo-section">
+           <Image className="logo-image" src={logo} />
+        </Segment>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
           <Menu.Item name='browse' active={activeItem === 'browse'} onClick={this.handleItemClick} />
           <Menu.Item name='favorites' active={activeItem === 'favorites'} onClick={this.handleItemClick} />
@@ -31,6 +31,9 @@ class Header extends Component {
 
        
       </div>
+
+
+
     )
   }
 }

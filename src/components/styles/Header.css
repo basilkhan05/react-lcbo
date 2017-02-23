@@ -4,7 +4,10 @@
 .logo-section{
 	border: none !important;
 	box-shadow: none !important;
+	margin-bottom: 0px !important;
 }
 .logo-image{
 	margin: 0 auto;
+	height: 50px;
+
 }

@@ -1,0 +1,8 @@
+.ui.vertical.footer.segment{
+	margin-top: 75px;
+}
+
+div.ui.inverted.vertical.footer.segment > div{
+	padding-top: 25px;
+	padding-bottom: 25px;
+}

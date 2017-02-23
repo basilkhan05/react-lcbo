@@ -12,7 +12,8 @@ var myInit = { method: 'GET',
 export const callLCBOApi = function(query, that)  {
     fetch(config.lcboapiURL+query ,myInit)
     .then(  
-    function(response) { 
+    function(response) {
+
       that.setState({
            Loader: true
         });
@@ -24,6 +25,7 @@ export const callLCBOApi = function(query, that)  {
 
       // Set State to the Data in the response  
       response.json().then(function(data) {  
+        console.log(data);
         that.setState({
            productsData: data.result,
            Loader: false
