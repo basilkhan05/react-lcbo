@@ -1,4 +1,4 @@
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 import React, { Component } from 'react'
 import { Input, Menu, Segment, Image } from 'semantic-ui-react'
 import '../styles/Header.css'
@@ -17,7 +17,9 @@ class Header extends Component {
 
         <Menu pointing secondary>
         <Segment className="logo-section">
+           <Link to={`/`}>
            <Image className="logo-image" src={logo} />
+           </Link>
         </Segment>
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
           <Menu.Item name='browse' active={activeItem === 'browse'} onClick={this.handleItemClick} />
