@@ -15,7 +15,7 @@ class Header extends Component {
     return (
       <div>
 
-        <Menu pointing secondary fixed>
+        <Menu pointing secondary>
         <Segment className="logo-section">
            <Image className="logo-image" src={logo} />
         </Segment>

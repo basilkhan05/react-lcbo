@@ -49,7 +49,7 @@ class Home extends React.Component {
 
 
       </Grid>
-      <Button primary fluid>LOAD MORE</Button>
+      <Button className={"load-button"} primary fluid>LOAD MORE</Button>
       </div>
     );
   }
