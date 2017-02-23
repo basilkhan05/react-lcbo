@@ -1,6 +1,6 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 // import LoaderScreen from '../components/Loader'
 import './styles/Product.css'
 

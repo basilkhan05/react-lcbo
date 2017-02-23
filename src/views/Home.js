@@ -33,7 +33,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-      <Grid columns={6} stackable={true}>
+      <Grid columns={4} stackable={true}>
         
 
         {this.state.productsData ?
