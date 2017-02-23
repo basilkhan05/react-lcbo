@@ -19,8 +19,7 @@ class Home extends React.Component {
   // get Product Data 
   getHomeData = () => {
     callLCBOApi('/products?'
-      + 'per_page=20&'
-      + 'order=alcohol_content.desc,price_in_cents.asc'
+      + 'per_page=20&' + 'order=alcohol_content.desc,price_in_cents.asc'
       // + 'where=is_vqa&'
       // + 'order=price_in_cents.desc'
       , this);
@@ -38,11 +37,9 @@ class Home extends React.Component {
 
         {this.state.productsData ?
           this.state.productsData.map((product, idx) =>
-        <Grid.Column key={'product-' + idx}>
-          
-            <ProductPreviewCard productPreview={product} />
-          
-        </Grid.Column>
+            <Grid.Column key={'product-' + idx}>
+                <ProductPreviewCard productPreview={product} />
+            </Grid.Column>
         )
           :
           <h2 className="center">There was problem getting product data... Please check back later</h2>}

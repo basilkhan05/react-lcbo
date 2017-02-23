@@ -7,7 +7,8 @@ import Product from './views/Product';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
-    <Route path="/product" component={Product} />
-    <Route path="/product/:id" component={Product} />
+    <Route path="product" component={Product} />
+    	<Route path="/product/:id" component={Product} />
+    </Route>
   </Route>
 );

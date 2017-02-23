@@ -6,13 +6,11 @@ class App extends Component {
   render() {
     return (
       <div>
-      
       <div className="ui container">
       <Header />
         <div>
           {this.props.children}
         </div>
-      
       </div>
       <Footer />
       </div>

@@ -30,7 +30,6 @@ class Product extends React.Component {
   render() {
     const productData = this.state.productsData;
     return (
-      <div>
       <Grid columns={2} stackable={true}>
         
         <div>{productData.id} </div>
@@ -39,10 +38,7 @@ class Product extends React.Component {
         <div>{productData.primary_category} </div>
         <div>{productData.price_per_liter_of_alcohol_in_cents} </div>
 
-
       </Grid>
-      
-      </div>
     );
   }
 }
