@@ -4,19 +4,19 @@
 
 .product-preview-card:hover{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-	transition: all 1s;
+	transition: all 0.5s;
 }
 .product-preview-card{
 	box-shadow: none;
-	transition: all 10s;
+	transition: all 1s;
 }
 
 .product-preview-card:hover img{
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%) blur(10px);
-    transition: all 30s;
+    filter: grayscale(100%);
+    transition: all 1s;
 }
 
 .product-preview-card img{
-    transition: all 5s;
+    transition: all 1s;
 }

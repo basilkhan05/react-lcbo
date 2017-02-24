@@ -4,6 +4,7 @@ import { Grid, Button } from 'semantic-ui-react'
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Home extends React.Component {
     constructor(props){
@@ -29,23 +30,29 @@ class Home extends React.Component {
     this.getHomeData();
   }
 
+
   render() {
+    const products = (this.state.productsData
+                    ? this.state.productsData.map((product, idx) => (
+                        <Grid.Column key={'product-' + idx} >
+                            <ProductPreviewCard productPreview={product} />
+                        </Grid.Column>
+                      ))
+                    : <h2 className="center">There was problem getting product data... Please check back later</h2>
+                  );
+
     return (
       <div>
-      <Grid columns={4} stackable={true}>
-        
+      
+        <ReactCSSTransitionGroup
+          transitionName="products"
+          transitionAppear={true}>
+          <Grid columns={4} stackable={true}>
+          {products}
+          </Grid>
+        </ReactCSSTransitionGroup>
 
-        {this.state.productsData ?
-          this.state.productsData.map((product, idx) =>
-            <Grid.Column key={'product-' + idx}>
-                <ProductPreviewCard productPreview={product} />
-            </Grid.Column>
-        )
-          :
-          <h2 className="center">There was problem getting product data... Please check back later</h2>}
-
-
-      </Grid>
+      
       <Button className={"load-button"} primary fluid>LOAD MORE</Button>
       </div>
     );
