@@ -46,7 +46,10 @@ class Home extends React.Component {
       
         <ReactCSSTransitionGroup
           transitionName="products"
-          transitionAppear={true}>
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
+          transitionEnter={false}
+          transitionLeave={false}>
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
