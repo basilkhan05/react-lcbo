@@ -9,10 +9,27 @@
 	margin-top: 50px !important;
 }
 .products-appear {
-  opacity: 0.1;
+  opacity: 0.01;
 }
 
 .products-appear.products-appear-active {
   opacity: 1;
   transition: opacity 1s ease-in;
+}
+.products-enter {
+  opacity: 0.01;
+}
+
+.products-enter.products-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.products-leave {
+  opacity: 1;
+}
+
+.products-leave.products-leave-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment} from 'semantic-ui-react'
 // import LoaderScreen from '../components/Loader'
 import './styles/Product.css'
+import noImage from '../../public/no-image.jpeg'
 
 class Product extends React.Component {
     constructor(props){
@@ -32,11 +33,68 @@ class Product extends React.Component {
     return (
       <Grid columns={2} stackable={true}>
         
-        <div>{productData.id} </div>
-        <div>{productData.name} </div>
-        <div>{productData.tags} </div>
-        <div>{productData.primary_category} </div>
-        <div>{productData.price_per_liter_of_alcohol_in_cents} </div>
+        <Grid.Column width={5}>
+          <Image className='center' src={productData.image_url ? productData.image_url : noImage} />
+        </Grid.Column>
+
+        <Grid.Column width={10}>
+          <Header as='h1'>{productData.name}</Header>
+          <Header as='h5'>Product ID# {productData.id}</Header>
+
+          <Segment>
+
+            <Header as='h2'>Price: {productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'} </Header>
+            <Progress percent={(Math.log(productData.price_in_cents/100) / Math.log(35000))*100} color='green'/>
+
+            <Header as='h2'>Alcohol Content</Header>
+            <Progress percent={productData.alcohol_content / 100} color='violet' label />
+            
+            <Grid columns={3} stackable={true}>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Product ID# </Header>
+                <div>{productData.id}</div>
+              </Grid.Column>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Product ID# </Header>
+                <div>{productData.id}</div>
+              </Grid.Column>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Product ID# </Header>
+                <div>{productData.id}</div>
+              </Grid.Column>
+
+            </Grid>
+
+            <Grid columns={3} stackable={true}>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Product ID# </Header>
+                <div>{productData.id}</div>
+              </Grid.Column>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Style </Header>
+                <div>{productData.style ? productData.style : 'No Style Available' }</div>
+              </Grid.Column>
+
+              <Grid.Column width={5} className='center'>
+                <Header as='h3'>Stock Type </Header>
+                <div>{productData.stock_type}</div>
+              </Grid.Column>
+
+            </Grid>
+
+          </Segment>
+
+        </Grid.Column>
+
+        <Grid.Column>
+
+        </Grid.Column>
+        
 
       </Grid>
     );
