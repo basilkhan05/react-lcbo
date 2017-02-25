@@ -20,7 +20,6 @@ class Home extends React.Component {
   // get Product Data 
   getHomeData = () => {
     callLCBOApi('/products?'
-      + 'per_page=20&' + 'order=alcohol_content.desc,price_in_cents.desc&'
       // + 'where=is_vqa&'
       // + 'order=price_in_cents.desc'
       , this);
@@ -42,8 +41,6 @@ class Home extends React.Component {
                   );
 
     return (
-      <div>
-      
         <ReactCSSTransitionGroup
           transitionName="products"
           transitionAppear={true}
@@ -53,11 +50,8 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
+          <Button className={"load-button"} primary fluid>LOAD MORE</Button>
         </ReactCSSTransitionGroup>
-
-      
-      <Button className={"load-button"} primary fluid>LOAD MORE</Button>
-      </div>
     );
   }
 }

@@ -2,3 +2,32 @@
 	margin: 0 auto;
 	text-align: center;
 }
+.product-appear {
+  opacity: 0.01;
+}
+
+.product-appear.product-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+.product-enter {
+  opacity: 0.01;
+}
+
+.product-enter.product-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.product-leave {
+  opacity: 1;
+}
+
+.product-leave.product-leave-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+.wasPrice{
+	color: red;
+	font-size: 0.8em;
+}
