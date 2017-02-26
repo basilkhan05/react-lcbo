@@ -20,16 +20,16 @@ class ProductPreviewCard extends React.Component {
       <Card.Meta>
       {
         (productPreview.price_in_cents 
-          ? '$'+ productPreview.price_in_cents / 100 
+          ? `${productPreview.price_in_cents / 100}`
           : null)
       }
       </Card.Meta>
       <Card.Description>{productPreview.producer_name}</Card.Description>
       <Card.Description><strong>
-      <Icon name='fire' />
+       <Icon name="fire" />
       {
         (productPreview.alcohol_content 
-          ? productPreview.alcohol_content / 100+'%'
+          ? `${productPreview.alcohol_content / 100}%`
           : null)
       }
       </strong></Card.Description>
