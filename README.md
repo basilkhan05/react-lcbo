@@ -1,4 +1,4 @@
-#React LCBO (TipZee)
+#React LCBO
 
 This project takes the popular concept of Songza, and brings it to your local LCBO store. Simply choose the mood and your budget and the app will provides you with a selection of alcoholic beverages for a variety of occassions. 
 
