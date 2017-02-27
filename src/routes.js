@@ -3,6 +3,8 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Home from './views/Home';
 import Product from './views/Product';
+import { localState, saveState } from './localStorage';
+import throttle from 'lodash/throttle';
 
 import { combineReducers, createStore } from 'redux';  
 import { Provider } from 'react-redux';
@@ -21,6 +23,11 @@ const store = createStore(
 	allProducts,
 	persistedState
 ); 
+
+store.subscribe(throttle(() => {
+	saveState(store.getState());
+}, 1000));
+
 console.log(store.getState());
 
 export default (
