@@ -3,6 +3,9 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Home from './views/Home';
 import Product from './views/Product';
+import configureStore from './configureStore';
+
+const store = configureStore();
 
 export default (
   <Route path="/" component={App}>

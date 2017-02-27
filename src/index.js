@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
-import routes from './routes';
+import configureStore from './configureStore';
+import Root from './Root';
+
+const store = configureStore();
 
 ReactDOM.render(
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory} routes={routes} />,
-  document.getElementById('root')
+	<Root store={store} />,
+  		document.getElementById('root')
 );
