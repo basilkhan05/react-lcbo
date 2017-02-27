@@ -30,6 +30,14 @@ export const callLCBOApi = function(query, that)  {
            productsData: data.result,
            Loader: false
         });
+        if (data.pager) {
+          that.setState({
+              pager : {
+                'current_page_record_count': data.pager.current_page_record_count,
+                'total_record_count': data.pager.total_record_count
+              },
+          });
+        }        
       });  
     }  
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
-import { Grid, Header, Image, Progress, Segment} from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
 // import LoaderScreen from '../components/Loader'
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -35,7 +35,8 @@ class Product extends React.Component {
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
                       : null);
-    const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100  ; 
+    const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100;
+
     return (      
     <ReactCSSTransitionGroup
       transitionName="products"
@@ -114,9 +115,11 @@ class Product extends React.Component {
 
       </Grid>
 
+      <Divider />
+
       <Grid columns={2} stackable={true}>
 
-        
+
 
       </Grid>
 
