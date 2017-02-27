@@ -1,6 +1,6 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid, Button, Statistic } from 'semantic-ui-react'
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
@@ -12,6 +12,10 @@ class Home extends React.Component {
 
     this.state = {
       productsData: [],
+      pager :{
+        'current_page_record_count': '',
+        'total_record_count': ''
+      },
       Loader: false
     }
   }
@@ -40,6 +44,20 @@ class Home extends React.Component {
                     : <h2 className="center">There was problem getting product data... Please check back later</h2>
                   );
 
+    const searchSummary = this.state.pager ? this.state.pager : null; 
+    const searchSummaryComponent = (
+          <Statistic.Group widths='two'>
+            <Statistic>
+              <Statistic.Value>{searchSummary.current_page_record_count}</Statistic.Value>
+              <Statistic.Label>Products on this page</Statistic.Label>
+            </Statistic>
+            <Statistic>
+              <Statistic.Value>{searchSummary.total_record_count}</Statistic.Value>
+              <Statistic.Label>Total Products Found</Statistic.Label>
+            </Statistic>
+          </Statistic.Group>
+          );
+
     return (
         <ReactCSSTransitionGroup
           transitionName="products"
@@ -47,6 +65,7 @@ class Home extends React.Component {
           transitionAppearTimeout={1000}
           transitionEnter={false}
           transitionLeave={false}>
+          {searchSummaryComponent}
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
