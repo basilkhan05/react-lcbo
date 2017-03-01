@@ -13,7 +13,7 @@ class Product extends React.Component {
     this.state = {
       product_id: this.props.params.id,
       Loader: false,
-      productsData: []
+      productData: []
     }
   }
   // - 'order=alcohol_content.desc,price_in_cents.asc'
@@ -30,7 +30,7 @@ class Product extends React.Component {
   }
 
   render() {
-    const productData = this.state.productsData;
+    const productData = this.state.productData;
     const productPrice = productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'; 
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
