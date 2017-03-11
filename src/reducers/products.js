@@ -1,6 +1,6 @@
 const products = (state = [], action) => {
 	switch (action.type) {
-		case 'ADD_PRODUCTS':
+		case 'LOAD_PRODUCTS':
 			return [
 				...state,
 				];

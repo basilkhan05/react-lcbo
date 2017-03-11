@@ -88,7 +88,7 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button onClick={this.loadProducts} primary fluid>LOAD MORE</Button>
+          <Button onClick={this.loadProducts} className="load-button" primary fluid>LOAD MORE</Button>
         </ReactCSSTransitionGroup>
     );
   }
