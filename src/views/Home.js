@@ -7,6 +7,7 @@ import ProductPreviewCard  from '../components/ProductPreviewCard'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // import { loadProducts } from '../actions'
+import R from 'ramda'
 
 class Home extends React.Component {
     constructor(props){
@@ -30,10 +31,15 @@ class Home extends React.Component {
   // get Product Data 
   getHomeData = () => {
     const productQuery = this.state.productQuery ;
-    callLCBOApi('/products?'
+    const createQstring = R.compose(
+      R.concat('?'),
+      R.join('&'),
+      R.map(R.join('=')),
+      R.toPairs);
+    const result = createQstring(productQuery)
+    callLCBOApi('/products'
       // + 'where=is_vqa&'
-      + 'order=' + productQuery['order']
-      + '&page=' + productQuery['currentPage']
+      + result
       , this);
   }
 
