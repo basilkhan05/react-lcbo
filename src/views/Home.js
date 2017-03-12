@@ -1,10 +1,13 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
 import { Grid, Button, Statistic } from 'semantic-ui-react'
+
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+// import { loadProducts } from '../actions'
+import R from 'ramda'
 
 class Home extends React.Component {
     constructor(props){
@@ -12,9 +15,13 @@ class Home extends React.Component {
 
     this.state = {
       productsData: [],
+      productQuery: {
+        'order': 'price_in_cents.desc',
+        'currentPage': 1
+      },
       pager :{
-        'current_page_record_count': '',
-        'total_record_count': ''
+        'current_page_record_count': 0,
+        'total_record_count': 0
       },
       Loader: false
     }
@@ -23,15 +30,32 @@ class Home extends React.Component {
   //classy -  'where=is_vqa'
   // get Product Data 
   getHomeData = () => {
-    callLCBOApi('/products?'
+    const productQuery = this.state.productQuery ;
+    const createQstring = R.compose(
+      R.concat('?'),
+      R.join('&'),
+      R.map(R.join('=')),
+      R.toPairs);
+    const result = createQstring(productQuery)
+    callLCBOApi('/products'
       // + 'where=is_vqa&'
-      // + 'order=price_in_cents.desc'
+      + result
       , this);
   }
 
   componentDidMount(){
     this.getHomeData();
   }
+
+  loadProducts = () => {
+  const productQuery = this.state.productQuery ;
+  callLCBOApi('/products?'
+  + 'order=' + productQuery['order']
+  + '&page=' + productQuery['currentPage']
+  , this);
+
+}
+
 
 
   render() {
@@ -43,6 +67,7 @@ class Home extends React.Component {
                       ))
                     : <h2 className="center">There was problem getting product data... Please check back later</h2>
                   );
+    
 
     const searchSummary = this.state.pager ? this.state.pager : null; 
     const searchSummaryComponent = (
@@ -69,7 +94,7 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button className={"load-button"} primary fluid>LOAD MORE</Button>
+          <Button onClick={this.loadProducts} className="load-button" primary fluid>LOAD MORE</Button>
         </ReactCSSTransitionGroup>
     );
   }

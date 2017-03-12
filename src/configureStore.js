@@ -2,7 +2,6 @@ import { loadState, saveState } from './localStorage';
 import throttle from 'lodash/throttle';
 
 import { createStore } from 'redux';  
-import { Provider } from 'react-redux';
 
 import allProducts from './reducers';
 
