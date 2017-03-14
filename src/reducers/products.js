@@ -6,13 +6,13 @@ const products = (state = initialState, action) => {
 			return [
 				...state,
 				];
-		case 'FETCH_PRODUCTS_START':
+		case 'FETCH_PRODUCTS_PENDING':
 			return {...state, fetching: true}
 			break;
-		case 'RECEIVE_PRODUCTS':
+		case 'FETCH_PRODUCTS_FULFILLED':
 			return {...state, fetching: false, fetched: true, products: action.payload }
 			break;
-		case 'FETCH_PRODUCTS_ERROR':
+		case 'FETCH_PRODUCTS_REJECTED':
 			return {...state, fetching: false, error: action.payload}
 			break;
 		default:
