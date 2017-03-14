@@ -5,12 +5,23 @@ import { createStore, applyMiddleware } from 'redux';
 
 import allProducts from './reducers';
 
+
+
 const logger = (store) => (next) => (action) => {
 	console.log("action fired", action);
 	next(action);
 }
 
-const middleware = applyMiddleware(logger);
+const error = (store) => (next) => (action) => {
+	try {
+		next(action);
+	} catch(e) {
+		console.log("ERROR!", e);
+	}
+}
+
+
+const middleware = applyMiddleware(logger, error);
 
 const configureStore = () => {
 	const persistedState = loadState();
