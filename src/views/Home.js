@@ -1,6 +1,7 @@
 import React from 'react';
 import { callLCBOApi } from '../utilities/utils'
 import { Grid, Button, Statistic } from 'semantic-ui-react'
+import { loadProducts } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
@@ -43,7 +44,7 @@ class Home extends React.Component {
       , this);
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.getHomeData();
   }
 
@@ -83,6 +84,7 @@ class Home extends React.Component {
           </Statistic.Group>
           );
 
+
     return (
         <ReactCSSTransitionGroup
           transitionName="products"
@@ -94,7 +96,7 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button onClick={this.loadProducts} className="load-button" primary fluid>LOAD MORE</Button>
+          <Button onClick={this.loadProducts} className="load-button" primary fluid disabled>LOAD MORE</Button>
         </ReactCSSTransitionGroup>
     );
   }

@@ -25,7 +25,6 @@ export const callLCBOApi = function(query, that)  {
       // Set State to the Data in the response  
       response.json().then(function(data) {  
         const allProducts = that.state.productsData;
-        console.log(data.pager);
         if (data.result.length > 1) {
             that.setState({
               productsData: allProducts.concat(data.result),
