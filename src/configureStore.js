@@ -19,10 +19,10 @@ const configureStore = () => {
 		middleware
 	); 
 
-	// store.subscribe(throttle(() => {
-	// 	saveState(store.getState());
-	// 	console.log(("store changed", store.getState()));
-	// }, 0));
+	store.subscribe(throttle(() => {
+		saveState(store.getState());
+		console.log(("store changed", store.getState()));
+	}, 0));
 
 	// store.dispatch({ 
 	// 	type: "FETCH_PRODUCTS",

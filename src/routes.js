@@ -4,7 +4,6 @@ import App from './App';
 import Home from './views/Home';
 import Product from './views/Product';
 
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />

@@ -11,7 +11,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import * as product from '../actions'
 import R from 'ramda'
 
-connect((store) => {
+@connect((store) => {
     return {
       products: store.products
     }
