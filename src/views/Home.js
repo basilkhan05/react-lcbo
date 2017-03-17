@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { connect } from "react-redux"
 import { callLCBOApi } from '../utilities/utils'
 import { Grid, Button, Statistic } from 'semantic-ui-react'
 import { loadProducts } from '../actions'
@@ -7,8 +8,15 @@ import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-// import { loadProducts } from '../actions'
+import * as product from '../actions'
 import R from 'ramda'
+
+connect((store) => {
+    return {
+      products: store.products
+    }
+  });
+
 
 class Home extends React.Component {
     constructor(props){
@@ -58,8 +66,8 @@ class Home extends React.Component {
 }
 
 
-
   render() {
+    console.log('store', this.props);
     const products = (this.state.productsData
                     ? this.state.productsData.map((product, idx) => (
                         <Grid.Column key={'product-' + idx} >
@@ -96,7 +104,7 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button onClick={this.loadProducts} className="load-button" primary fluid disabled>LOAD MORE</Button>
+          <Button onClick={loadProducts} className="load-button" primary fluid>LOAD MORE</Button>
         </ReactCSSTransitionGroup>
     );
   }

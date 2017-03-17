@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import { connect } from "react-redux"
+
+connect((store) => {
+    return {
+      products: store.products
+    }
+  });
+
 
 class App extends Component {
   render() {

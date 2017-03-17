@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import products from './products';
 import moods from './moods';
 

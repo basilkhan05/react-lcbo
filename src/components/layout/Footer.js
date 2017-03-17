@@ -1,6 +1,6 @@
 // import { Link } from 'react-router';
 import React, { Component } from 'react'
-import { Input, Menu, Segment, Image } from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
 import '../styles/Footer.css'
 import logo from '../../../public/logo.png'
 
