@@ -11,11 +11,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import * as product from '../actions'
 import R from 'ramda'
 
-@connect((store) => {
-    return {
-      products: store.products
-    }
-  });
+
 
 class Home extends React.Component {
     constructor(props){
@@ -109,4 +105,8 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default connect((store) => {
+    return {
+      products: store.products
+    };
+  })(Home);
