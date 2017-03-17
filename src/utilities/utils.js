@@ -1,4 +1,4 @@
-const config = require('../../config/config');
+const config = require('../../app_config/config');
 
 var myHeaders = new Headers();
 myHeaders.append("Authorization", config.access_token);

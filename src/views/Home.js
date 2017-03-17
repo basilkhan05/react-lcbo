@@ -17,7 +17,6 @@ import R from 'ramda'
     }
   });
 
-
 class Home extends React.Component {
     constructor(props){
     super(props);
