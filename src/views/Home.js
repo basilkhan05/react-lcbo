@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { callLCBOApi } from '../utilities/utils'
-import { Grid, Button, Statistic } from 'semantic-ui-react'
+import { Grid, Button, Statistic, Icon } from 'semantic-ui-react'
 import { fetchProducts, loadMoreProducts } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
@@ -14,7 +14,8 @@ import R from 'ramda'
 const mapStateToProps = (store) => {
   return {
      products: store.products.products, 
-     pager: store.products.pager
+     pager: store.products.pager,
+     fetching: store.products.fetching
   }
 }
 
@@ -108,16 +109,23 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button 
-              onClick={
-                ()  => 
-                {this.props.dispatch(loadMoreProducts(searchSummary ? searchSummary.next_page : null)) }
-              } 
-              className="load-button" 
-              primary 
-              fluid>
-              LOAD MORE
-          </Button>
+          {this.props.fetching
+            ?
+            <Button className="load-button" primary fluid disabled>
+                <Icon loading name='spinner' /> FETCHING BOOZE ...
+            </Button>
+              :
+            <Button 
+                onClick={
+                  ()  => 
+                  {this.props.dispatch(loadMoreProducts(searchSummary ? searchSummary.next_page : null)) }
+                } 
+                className="load-button" 
+                primary 
+                fluid>
+                GIMME MORE
+            </Button>
+          }
         </ReactCSSTransitionGroup>
     );
   }
