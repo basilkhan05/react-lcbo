@@ -3,3 +3,28 @@
 	height: 100%;
 	width: 100%;
 }
+.page-loader-appear {
+  opacity: 0.01;
+}
+
+.page-loader-appear.page-loader-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+.page-loader-enter {
+  opacity: 0.01;
+}
+
+.page-loader-enter.page-loader-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.page-loader-leave {
+  opacity: 1;
+}
+
+.page-loader-leave.page-loader-leave-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}

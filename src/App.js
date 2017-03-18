@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 
 import { Segment, Dimmer, Loader } from 'semantic-ui-react'
 import { connect } from "react-redux"
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import './views/styles/App.css'
 
@@ -22,7 +23,13 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <ReactCSSTransitionGroup
+          transitionName="page-loader"
+          transitionAppear={true}
+          transitionAppearTimeout={200}
+          transitionLeaveTimeout={1000}
+          transitionEnter={true}
+          transitionLeave={true}>
       {!this.props.loading
         ?
       <div>
@@ -35,13 +42,15 @@ class App extends Component {
       <Footer />
       </div>
       :
-      <Segment className="page-loader">
-        <Dimmer active>
-          <Loader size='massive'>Loading</Loader>
-        </Dimmer>
-      </Segment>
+      
+        <Segment className="page-loader">
+          <Dimmer active>
+            <Loader size='massive'>Getting TipZeeeeeee</Loader>
+          </Dimmer>
+        </Segment>
+      
      }
-      </div>
+      </ReactCSSTransitionGroup>
     );
   }
 }
