@@ -3,9 +3,9 @@ import { initialState } from '../utilities/initialState'
 const products = (state = initialState, action) => {
 	switch (action.type) {
 		case 'LOAD_PRODUCTS':
-			return [
+			return {
 				...state,
-				];
+				};
 		case 'FETCH_PRODUCTS_PENDING':
 			return {...state, fetching: true}
 		case 'FETCH_PRODUCTS_FULFILLED':

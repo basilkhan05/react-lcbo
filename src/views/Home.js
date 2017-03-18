@@ -12,6 +12,12 @@ import * as product from '../actions'
 import R from 'ramda'
 
 
+const mapStateToProps = (store) => {
+  return {
+     products: store.products
+  }
+}
+
 
 class Home extends React.Component {
     constructor(props){
@@ -49,6 +55,7 @@ class Home extends React.Component {
 
   componentDidMount(){
     this.getHomeData();
+    this.props.dispatch(loadProducts);
   }
 
   loadProducts = () => {
@@ -62,7 +69,7 @@ class Home extends React.Component {
 
 
   render() {
-    console.log('store', this.props);
+    console.log('store', this.props.products);
     const products = (this.state.productsData
                     ? this.state.productsData.map((product, idx) => (
                         <Grid.Column key={'product-' + idx} >
@@ -105,8 +112,4 @@ class Home extends React.Component {
   }
 }
 
-export default connect((store) => {
-    return {
-      products: store.products
-    };
-  })(Home);
+export default connect(mapStateToProps)(Home);
