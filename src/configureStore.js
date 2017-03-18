@@ -1,5 +1,5 @@
-import { loadState, saveState } from './localStorage';
-import throttle from 'lodash/throttle';
+// import { loadState, saveState } from './localStorage';
+// import throttle from 'lodash/throttle';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
@@ -11,18 +11,17 @@ import allReducers from './reducers';
 const middleware = applyMiddleware(promise(), thunk, logger());
 
 const configureStore = () => {
-	const persistedState = loadState();
+	// const persistedState = loadState();
 
 	const store = createStore(
 		allReducers,
-		persistedState,
 		middleware
 	); 
 
-	store.subscribe(throttle(() => {
-		saveState(store.getState());
-		console.log(("store changed", store.getState()));
-	}, 0));
+	// store.subscribe(throttle(() => {
+	// 	saveState(store.getState());
+	// 	console.log(("store changed", store.getState()));
+	// }, 0));
 
 	// store.dispatch({ 
 	// 	type: "FETCH_PRODUCTS",

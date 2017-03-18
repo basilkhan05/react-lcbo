@@ -31,7 +31,7 @@ export const callLCBOApi = function(query, that)  {
               Loader: false,
               productQuery: {
                 'order': that.state.productQuery.order,
-                'currentPage': parseInt(that.state.productQuery.currentPage) + 1
+                // 'currentPage': parseInt(that.state.productQuery.currentPage) + 1
                 }
           });
           } else {
