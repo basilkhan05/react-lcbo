@@ -3,4 +3,5 @@ export const initialState = {
 	fetched: false,
 	products: [],
 	error: null,
+	pager: null
 };

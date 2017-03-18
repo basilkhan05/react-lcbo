@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux"
 import { callLCBOApi } from '../utilities/utils'
 import { Grid, Button, Statistic } from 'semantic-ui-react'
-import { fetchProducts } from '../actions'
+import { fetchProducts, loadMoreProducts } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
@@ -13,7 +13,8 @@ import R from 'ramda'
 
 const mapStateToProps = (store) => {
   return {
-     products: store.products.products
+     products: store.products.products, 
+     pager: store.products.pager
   }
 }
 
@@ -53,7 +54,7 @@ class Home extends React.Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(fetchProducts());
+    this.props.products.length > 0 ? null : this.props.dispatch(fetchProducts());
   }
 
   loadProducts = () => {
@@ -78,11 +79,13 @@ class Home extends React.Component {
                   );
     
 
-    const searchSummary = this.state.pager ? this.state.pager : null; 
-    const searchSummaryComponent = (
+    const searchSummary = this.props.pager; 
+    const searchSummaryComponent = 
+    searchSummary ?
+        (
           <Statistic.Group widths='two'>
             <Statistic>
-              <Statistic.Value>{searchSummary.current_page_record_count}</Statistic.Value>
+              <Statistic.Value>{this.props.products.length}</Statistic.Value>
               <Statistic.Label>Products on this page</Statistic.Label>
             </Statistic>
             <Statistic>
@@ -90,7 +93,8 @@ class Home extends React.Component {
               <Statistic.Label>Total Products Found</Statistic.Label>
             </Statistic>
           </Statistic.Group>
-          );
+          )
+      : null ;
 
 
     return (
@@ -104,7 +108,16 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button className="load-button" primary fluid>LOAD MORE</Button>
+          <Button 
+              onClick={
+                ()  => 
+                {this.props.dispatch(loadMoreProducts(searchSummary ? searchSummary.next_page : null)) }
+              } 
+              className="load-button" 
+              primary 
+              fluid>
+              LOAD MORE
+          </Button>
         </ReactCSSTransitionGroup>
     );
   }
