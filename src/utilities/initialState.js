@@ -1,6 +1,6 @@
 export const initialState = {
 	fetching: false,
-	fethcing: false,
+	loading: false,
 	fetched: false,
 	products: [],
 	error: null,
