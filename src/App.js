@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
-import { Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import logo from '../public/logo.png'
 
 import './views/styles/App.css'
 
@@ -25,14 +27,25 @@ class App extends Component {
     return (
       <ReactCSSTransitionGroup
           transitionName="page-loader"
-          transitionAppear={true}
-          transitionAppearTimeout={200}
-          transitionLeaveTimeout={1000}
-          transitionEnter={true}
+          transitionAppear={false}
+          transitionLeaveTimeout={200}
+          transitionEnter={false}
           transitionLeave={true}>
-      {!this.props.loading
-        ?
       <div>
+
+      {this.props.loading
+        ?
+         <Segment className="page-loader">
+          <Dimmer active inverted>
+            <Loader indeterminate={true} size='massive'>
+              <Image className="ui centered image" src={logo} />
+              <h1>Hold on ... </h1>
+            </Loader>
+          </Dimmer>
+        </Segment>
+        : null
+      }
+
       <div className="ui container">
       <Header />
         <div>
@@ -41,15 +54,7 @@ class App extends Component {
       </div>
       <Footer />
       </div>
-      :
       
-        <Segment className="page-loader">
-          <Dimmer active>
-            <Loader size='massive'>Getting TipZeeeeeee</Loader>
-          </Dimmer>
-        </Segment>
-      
-     }
       </ReactCSSTransitionGroup>
     );
   }

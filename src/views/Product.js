@@ -1,10 +1,21 @@
 import React from 'react';
+import { connect } from "react-redux"
+
 import { callLCBOApi } from '../utilities/utils'
 import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
-// import LoaderScreen from '../components/Loader'
+
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import { fetchProduct } from '../actions'
+
+
+const mapStateToProps = (store) => {
+  return {
+     product: store.products.product, 
+  }
+}
 
 class Product extends React.Component {
     constructor(props){
@@ -26,11 +37,11 @@ class Product extends React.Component {
   }
 
   componentDidMount(){
-    this.getProductData();
+    this.props.dispatch(fetchProduct(this.props.params.id));
   }
 
   render() {
-    const productData = this.state.productData;
+    const productData = this.props.product;
     const productPrice = productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'; 
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
@@ -128,4 +139,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default connect(mapStateToProps)(Product);

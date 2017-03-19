@@ -3,6 +3,7 @@ export const initialState = {
 	loading: false,
 	fetched: false,
 	products: [],
+	product: [],
 	error: null,
 	pager: null
 };
