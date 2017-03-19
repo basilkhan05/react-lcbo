@@ -14,7 +14,7 @@ var myInit = { method: 'GET',
 export const fetchProducts = () => {
   return function(dispatch){
   		dispatch({type: "FETCH_PRODUCTS_PENDING"})
-	    fetch(config.lcboapiURL+"/products?order=alcohol_content.desc,price_in_cents.asc" ,myInit)
+	    fetch(config.lcboapiURL+"/products?order=alcohol_content.desc&q=sweet" ,myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
 	    	dispatch({type: "FETCH_PRODUCTS_FULFILLED", payload: data}) 

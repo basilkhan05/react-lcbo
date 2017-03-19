@@ -28,11 +28,7 @@ class App extends Component {
           transitionLeave={true}>
       <div>
 
-      {this.props.loading
-        ?
-        <LoaderScreen />
-        : null
-      }
+      {this.props.loading ? <LoaderScreen /> : null}
 
       <div className="ui container">
       <Header />

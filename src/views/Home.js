@@ -39,7 +39,8 @@ class Home extends React.Component {
                   );
     
 
-    const searchSummary = this.props.pager; 
+    const searchSummary = this.props.pager;
+    const nextPage =  searchSummary ? searchSummary.next_page : null;
     const searchSummaryComponent = 
     searchSummary ?
         (
@@ -69,10 +70,11 @@ class Home extends React.Component {
           {products}
           </Grid>
 
+          {nextPage ?
             <Button 
                 onClick={
                   ()  => 
-                  {this.props.dispatch(loadMoreProducts(searchSummary ? searchSummary.next_page : null)) }
+                  {this.props.dispatch(loadMoreProducts(nextPage)) }
                 } 
                 className="load-button" 
                 primary 
@@ -84,6 +86,8 @@ class Home extends React.Component {
                   : <span> GIMME MORE </span>
                 }
             </Button>
+            : null
+          }
           
         </ReactCSSTransitionGroup>
     );
