@@ -1,3 +1,8 @@
-const moods = {
+const moods = [
 	
-}
+	
+
+]
+	
+
+

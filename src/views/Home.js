@@ -14,16 +14,19 @@ const mapStateToProps = (store) => {
   return {
      products: store.products.products, 
      pager: store.products.pager,
-     fetching: store.products.fetching
+     fetching: store.products.fetching,
+     money_status_is_set: store.moods.money_status_is_set,
+     mood_is_set: store.moods.mood_is_set,
+     product_query: store.moods.product_query
   }
 }
 
 
 class Home extends React.Component {
 
-  componentDidMount(){
-    if (this.props.products.length < 1) {
-      this.props.dispatch(fetchProducts());
+  componentDidUpdate(){
+    if (this.props.products.length < 1 && this.props.mood_is_set && this.props.money_status_is_set) {
+      this.props.dispatch(fetchProducts(this.props.product_query));
     } 
   }
 
@@ -74,7 +77,7 @@ class Home extends React.Component {
             <Button 
                 onClick={
                   ()  => 
-                  {this.props.dispatch(loadMoreProducts(nextPage)) }
+                  {this.props.dispatch(loadMoreProducts(this.props.product_query, nextPage)) }
                 } 
                 className="load-button" 
                 primary 
