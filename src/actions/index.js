@@ -28,11 +28,11 @@ export const fetchProducts = () => {
 
 export const fetchProduct = (id) => {
   return function(dispatch){
-  		dispatch({type: "FETCH_PRODUCT_PENDING", id: id})
+  		dispatch({type: "FETCH_PRODUCT_PENDING"})
 	    fetch(config.lcboapiURL+"/products/"+id ,myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
-	    	dispatch({type: "FETCH_PRODUCT_FULFILLED", payload: data, id: id}) 
+	    	dispatch({type: "FETCH_PRODUCT_FULFILLED", payload: data}) 
 	    	})
 	    })  
 	  .catch(function(err) {  

@@ -18,7 +18,7 @@ const products = (state=initialState, action) => {
 			return {...state, fetching: false, loading: false, error: action.payload}
 		// FETCH Singles PRODUCT
 		case 'FETCH_PRODUCT_PENDING':
-			return {...state, fetching: true, loading: true}
+			return {...state, fetching: true, loading: true, product: []}
 		case 'FETCH_PRODUCT_FULFILLED':
 			return {...state, fetching: false, loading: false, fetched: true, product: action.payload.result }
 		case 'FETCH_PRODUCT_REJECTED':
