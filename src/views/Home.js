@@ -1,66 +1,36 @@
-import React from 'react';
-import { callLCBOApi } from '../utilities/utils'
-import { Grid, Button, Statistic } from 'semantic-ui-react'
+import React from 'react'
+import { connect } from "react-redux"
+import { Grid, Button, Statistic, Icon } from 'semantic-ui-react'
+import { fetchProducts, loadMoreProducts } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-// import { loadProducts } from '../actions'
-import R from 'ramda'
 
-class Home extends React.Component {
-    constructor(props){
-    super(props);
 
-    this.state = {
-      productsData: [],
-      productQuery: {
-        'order': 'price_in_cents.desc',
-        'currentPage': 1
-      },
-      pager :{
-        'current_page_record_count': 0,
-        'total_record_count': 0
-      },
-      Loader: false
-    }
+
+const mapStateToProps = (store) => {
+  return {
+     products: store.products.products, 
+     pager: store.products.pager,
+     fetching: store.products.fetching
   }
-  // - 'order=alcohol_content.desc,price_in_cents.asc'
-  //classy -  'where=is_vqa'
-  // get Product Data 
-  getHomeData = () => {
-    const productQuery = this.state.productQuery ;
-    const createQstring = R.compose(
-      R.concat('?'),
-      R.join('&'),
-      R.map(R.join('=')),
-      R.toPairs);
-    const result = createQstring(productQuery)
-    callLCBOApi('/products'
-      // + 'where=is_vqa&'
-      + result
-      , this);
-  }
-
-  componentDidMount(){
-    this.getHomeData();
-  }
-
-  loadProducts = () => {
-  const productQuery = this.state.productQuery ;
-  callLCBOApi('/products?'
-  + 'order=' + productQuery['order']
-  + '&page=' + productQuery['currentPage']
-  , this);
-
 }
 
 
+class Home extends React.Component {
+
+  componentDidMount(){
+    if (this.props.products.length < 1) {
+      this.props.dispatch(fetchProducts());
+    } 
+  }
 
   render() {
-    const products = (this.state.productsData
-                    ? this.state.productsData.map((product, idx) => (
+    // console.log('store', this.props.products);
+    const products = (this.props.products
+                    ? this.props.products.map((product, idx) => (
                         <Grid.Column key={'product-' + idx} >
                             <ProductPreviewCard productPreview={product} />
                         </Grid.Column>
@@ -69,11 +39,14 @@ class Home extends React.Component {
                   );
     
 
-    const searchSummary = this.state.pager ? this.state.pager : null; 
-    const searchSummaryComponent = (
+    const searchSummary = this.props.pager;
+    const nextPage =  searchSummary ? searchSummary.next_page : null;
+    const searchSummaryComponent = 
+    searchSummary ?
+        (
           <Statistic.Group widths='two'>
             <Statistic>
-              <Statistic.Value>{searchSummary.current_page_record_count}</Statistic.Value>
+              <Statistic.Value>{this.props.products.length}</Statistic.Value>
               <Statistic.Label>Products on this page</Statistic.Label>
             </Statistic>
             <Statistic>
@@ -81,7 +54,9 @@ class Home extends React.Component {
               <Statistic.Label>Total Products Found</Statistic.Label>
             </Statistic>
           </Statistic.Group>
-          );
+          )
+      : null ;
+
 
     return (
         <ReactCSSTransitionGroup
@@ -94,10 +69,29 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          <Button onClick={this.loadProducts} className="load-button" primary fluid>LOAD MORE</Button>
+
+          {nextPage ?
+            <Button 
+                onClick={
+                  ()  => 
+                  {this.props.dispatch(loadMoreProducts(nextPage)) }
+                } 
+                className="load-button" 
+                primary 
+                fluid
+                disabled={this.props.fetching ? true : false }
+                >
+                {this.props.fetching 
+                  ? <span> <Icon loading name='spinner' /> FETCHING BOOZE ...  </span>
+                  : <span> GIMME MORE </span>
+                }
+            </Button>
+            : null
+          }
+          
         </ReactCSSTransitionGroup>
     );
   }
 }
 
-export default Home;
+export default connect(mapStateToProps)(Home);

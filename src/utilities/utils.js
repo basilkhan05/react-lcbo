@@ -1,4 +1,4 @@
-const config = require('../../config/config');
+const config = require('../../app_config/config');
 
 var myHeaders = new Headers();
 myHeaders.append("Authorization", config.access_token);
@@ -25,14 +25,13 @@ export const callLCBOApi = function(query, that)  {
       // Set State to the Data in the response  
       response.json().then(function(data) {  
         const allProducts = that.state.productsData;
-        console.log(data.pager);
         if (data.result.length > 1) {
             that.setState({
               productsData: allProducts.concat(data.result),
               Loader: false,
               productQuery: {
                 'order': that.state.productQuery.order,
-                'currentPage': parseInt(that.state.productQuery.currentPage) + 1
+                // 'currentPage': parseInt(that.state.productQuery.currentPage) + 1
                 }
           });
           } else {

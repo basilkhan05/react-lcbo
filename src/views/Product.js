@@ -1,36 +1,29 @@
 import React from 'react';
-import { callLCBOApi } from '../utilities/utils'
+import { connect } from "react-redux"
+
 import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
-// import LoaderScreen from '../components/Loader'
+
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-class Product extends React.Component {
-    constructor(props){
-    super(props);
+import { fetchProduct } from '../actions'
 
-    this.state = {
-      product_id: this.props.params.id,
-      Loader: false,
-      productData: []
-    }
+
+const mapStateToProps = (store) => {
+  return {
+     product: store.products.product, 
   }
-  // - 'order=alcohol_content.desc,price_in_cents.asc'
-  //classy -  'where=is_vqa'
-  // get Product Data 
-  getProductData = () => {
-    callLCBOApi('/products/'
-      + this.state.product_id
-      , this);
-  }
+}
+
+class Product extends React.Component {
 
   componentDidMount(){
-    this.getProductData();
+    this.props.dispatch(fetchProduct(this.props.params.id));
   }
 
   render() {
-    const productData = this.state.productData;
+    const productData = this.props.product;
     const productPrice = productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'; 
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
@@ -128,4 +121,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default connect(mapStateToProps)(Product);
