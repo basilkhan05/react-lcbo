@@ -1,3 +1,5 @@
+import R from 'ramda'
+
 const config = require('../../app_config/config');
 
 var myHeaders = new Headers();
@@ -26,11 +28,11 @@ export const fetchProducts = () => {
 
 export const fetchProduct = (id) => {
   return function(dispatch){
-  		dispatch({type: "FETCH_PRODUCT_PENDING"})
+  		dispatch({type: "FETCH_PRODUCT_PENDING", id: id})
 	    fetch(config.lcboapiURL+"/products/"+id ,myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
-	    	dispatch({type: "FETCH_PRODUCT_FULFILLED", payload: data}) 
+	    	dispatch({type: "FETCH_PRODUCT_FULFILLED", payload: data, id: id}) 
 	    	})
 	    })  
 	  .catch(function(err) {  
@@ -42,7 +44,7 @@ export const fetchProduct = (id) => {
 export const loadMoreProducts = (page) => {
   return function(dispatch){
   		dispatch({type: "LOAD_MORE_PRODUCTS_PENDING"})
-	    fetch(config.lcboapiURL+"/products?order=alcohol_content.desc,price_in_cents.asc"+"&page="+page ,myInit)
+	    fetch(config.lcboapiURL+"/products?order=alcohol_content.desc,price_in_cents.asc&page="+page ,myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
 	    	dispatch({type: "LOAD_MORE_PRODUCTS_FULFILLED", payload: data}) 
@@ -53,3 +55,30 @@ export const loadMoreProducts = (page) => {
 	  });
   }
  }
+
+   // - 'order=alcohol_content.desc,price_in_cents.asc'
+  //classy -  'where=is_vqa'
+  // get Product Data 
+//   getHomeData = () => {
+//     const productQuery = this.state.productQuery ;
+//     const createQstring = R.compose(
+//       R.concat('?'),
+//       R.join('&'),
+//       R.map(R.join('=')),
+//       R.toPairs);
+//     const result = createQstring(productQuery)
+//     callLCBOApi('/products'
+//       // + 'where=is_vqa&'
+//       + result
+//       , this);
+//   }
+
+
+//   loadProducts = () => {
+//   const productQuery = this.state.productQuery ;
+//   callLCBOApi('/products?'
+//   + 'order=' + productQuery['order']
+//   + '&page=' + productQuery['currentPage']
+//   , this);
+
+// }

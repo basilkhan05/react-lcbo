@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { callLCBOApi } from '../utilities/utils'
 import { Grid, Button, Statistic, Icon } from 'semantic-ui-react'
 import { fetchProducts, loadMoreProducts } from '../actions'
 
@@ -8,7 +7,7 @@ import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import R from 'ramda'
+
 
 
 const mapStateToProps = (store) => {
@@ -21,52 +20,12 @@ const mapStateToProps = (store) => {
 
 
 class Home extends React.Component {
-    constructor(props){
-    super(props);
-
-    this.state = {
-      productsData: [],
-      productQuery: {
-        'order': 'price_in_cents.desc',
-        'currentPage': 1
-      },
-      pager :{
-        'current_page_record_count': 0,
-        'total_record_count': 0
-      },
-      Loader: false
-    }
-  }
-  // - 'order=alcohol_content.desc,price_in_cents.asc'
-  //classy -  'where=is_vqa'
-  // get Product Data 
-  getHomeData = () => {
-    const productQuery = this.state.productQuery ;
-    const createQstring = R.compose(
-      R.concat('?'),
-      R.join('&'),
-      R.map(R.join('=')),
-      R.toPairs);
-    const result = createQstring(productQuery)
-    callLCBOApi('/products'
-      // + 'where=is_vqa&'
-      + result
-      , this);
-  }
 
   componentDidMount(){
-    this.props.products.length > 0 ? null : this.props.dispatch(fetchProducts());
+    if (this.props.products.length < 1) {
+      this.props.dispatch(fetchProducts());
+    } 
   }
-
-  loadProducts = () => {
-  const productQuery = this.state.productQuery ;
-  callLCBOApi('/products?'
-  + 'order=' + productQuery['order']
-  + '&page=' + productQuery['currentPage']
-  , this);
-
-}
-
 
   render() {
     // console.log('store', this.props.products);
@@ -109,12 +68,7 @@ class Home extends React.Component {
           <Grid columns={4} stackable={true}>
           {products}
           </Grid>
-          {this.props.fetching
-            ?
-            <Button className="load-button" primary fluid disabled>
-                <Icon loading name='spinner' /> FETCHING BOOZE ...
-            </Button>
-              :
+
             <Button 
                 onClick={
                   ()  => 
@@ -122,10 +76,15 @@ class Home extends React.Component {
                 } 
                 className="load-button" 
                 primary 
-                fluid>
-                GIMME MORE
+                fluid
+                disabled={this.props.fetching ? true : false }
+                >
+                {this.props.fetching 
+                  ? <span> <Icon loading name='spinner' /> FETCHING BOOZE ...  </span>
+                  : <span> GIMME MORE </span>
+                }
             </Button>
-          }
+          
         </ReactCSSTransitionGroup>
     );
   }

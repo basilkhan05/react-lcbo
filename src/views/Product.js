@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { callLCBOApi } from '../utilities/utils'
 import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
 
 import './styles/Product.css'
@@ -18,10 +17,7 @@ const mapStateToProps = (store) => {
 }
 
 class Product extends React.Component {
-    constructor(props){
-    super(props);
-  }
-  
+
   componentDidMount(){
     this.props.dispatch(fetchProduct(this.props.params.id));
   }
