@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import LoaderScreen from './components/Loader';
 
-import { Segment, Dimmer, Loader, Image } from 'semantic-ui-react'
+import { Segment, Dimmer, Image } from 'semantic-ui-react'
 import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
-import logo from '../public/logo.png'
 
 import './views/styles/App.css'
 
@@ -35,14 +34,7 @@ class App extends Component {
 
       {this.props.loading
         ?
-         <Segment className="page-loader">
-          <Dimmer active inverted>
-            <Loader indeterminate={true} size='massive'>
-              <Image className="ui centered image" src={logo} />
-              <h1>Hold on ... </h1>
-            </Loader>
-          </Dimmer>
-        </Segment>
+        <LoaderScreen />
         : null
       }
 

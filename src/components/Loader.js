@@ -1,14 +1,16 @@
 import React from 'react'
 import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react'
+import logo from '../../public/logo.png'
 
 const LoaderScreen = () => (
-  <Segment>
-    <Dimmer active>
-      <Loader />
-    </Dimmer>
-
-    <Image src='http://semantic-ui.com/images/wireframe/short-paragraph.png' />
-  </Segment>
+  <Segment className="page-loader">
+	  <Dimmer active inverted>
+	    <Loader indeterminate={true} size='massive'>
+	      <Image className="ui centered image" src={logo} />
+	      <h1>Hold on ... </h1>
+	    </Loader>
+	  </Dimmer>
+	</Segment>
 )
 
 export default LoaderScreen

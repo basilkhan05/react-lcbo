@@ -20,22 +20,8 @@ const mapStateToProps = (store) => {
 class Product extends React.Component {
     constructor(props){
     super(props);
-
-    this.state = {
-      product_id: this.props.params.id,
-      Loader: false,
-      productData: []
-    }
   }
-  // - 'order=alcohol_content.desc,price_in_cents.asc'
-  //classy -  'where=is_vqa'
-  // get Product Data 
-  getProductData = () => {
-    callLCBOApi('/products/'
-      + this.state.product_id
-      , this);
-  }
-
+  
   componentDidMount(){
     this.props.dispatch(fetchProduct(this.props.params.id));
   }
