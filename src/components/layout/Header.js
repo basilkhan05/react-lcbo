@@ -14,7 +14,7 @@ class Header extends Component {
   
   render() {
 
-   const { current_$_status, current_mood } = this.props ? this.props.all_moods : null
+   const { current_$_status, current_mood } = this.props.all_moods 
     return (
       <div>
 

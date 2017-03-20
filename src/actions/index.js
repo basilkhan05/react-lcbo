@@ -71,7 +71,7 @@ export const setMoneyStatus = (lvl) => {
 	} else if (lvl === 1) {
 		return {type: "SET_MS_TO_LEVEL_1", current_$_status: lvl}
 	} else {
-		return {type: "RESET_MS"}
+		return {type: "RESET_MOOD"}
 	}
 }
 

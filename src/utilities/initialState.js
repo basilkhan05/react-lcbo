@@ -13,5 +13,5 @@ export const moodsInitialState = {
 	current_$_status: null, 
 	money_status_is_set: false,
 	mood_is_set: false,
-	product_query: '',
+	product_query: {},
 }
