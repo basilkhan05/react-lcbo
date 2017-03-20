@@ -15,7 +15,8 @@ const mapStateToProps = (store) => {
   return {
      loading: store.products.loading,
      mood_is_set: store.moods.mood_is_set,
-     money_status_is_set: store.moods.money_status_is_set
+     money_status_is_set: store.moods.money_status_is_set,
+     all_moods: store.moods
   }
 }
   
@@ -57,7 +58,7 @@ class App extends Component {
       }
 
       <div className="ui container">
-      <Header />
+      <Header dispatch={this.props.dispatch} all_moods={this.props.all_moods} />
         <div>
           {this.props.children}
         </div>

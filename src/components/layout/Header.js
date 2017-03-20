@@ -1,17 +1,20 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router'
 import React, { Component } from 'react'
-import { Input, Menu, Segment, Image } from 'semantic-ui-react'
+import { Input, Menu, Segment, Image, Button } from 'semantic-ui-react'
 import '../styles/Header.css'
 import logo from '../../../public/logo.png'
+import { setMoneyStatus, setMood } from '../../actions'
 
 class Header extends Component {
-  state = { activeItem: 'home' }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  componentDidUpdate(){
+    
+  }
+  
   render() {
-    const { activeItem } = this.state
 
+   const { current_$_status, current_mood } = this.props ? this.props.all_moods : null
     return (
       <div>
 
@@ -21,9 +24,29 @@ class Header extends Component {
            <Image className="logo-image" src={logo} />
            </Link>
         </Segment>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item name='browse' active={activeItem === 'browse'} onClick={this.handleItemClick} />
-          <Menu.Item name='favorites' active={activeItem === 'favorites'} onClick={this.handleItemClick} />
+        <Menu.Menu>
+            <Menu.Item>
+              <Button
+              onClick={
+                  ()  => 
+                  {this.props.dispatch(setMoneyStatus()) }
+                } 
+                icon='remove'
+                label={{ as: 'a', basic: true, content: current_$_status }}
+
+                labelPosition='left'
+              />
+              <Button
+              onClick={
+                  ()  => 
+                  {this.props.dispatch(setMood()) }
+                } 
+                icon='remove'
+                label={{ as: 'a', basic: true, content: current_mood }}
+                labelPosition='left'
+              />
+            </Menu.Item>
+          </Menu.Menu>
 		      <Menu.Menu position='right'>
             <Menu.Item>
               <Input icon='search' placeholder='Search ...' />

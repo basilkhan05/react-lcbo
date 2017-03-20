@@ -23,6 +23,17 @@ const products = (state=productsInitialState, action) => {
 			return {...state, fetching: false, loading: false, fetched: true, product: action.payload.result }
 		case 'FETCH_PRODUCT_REJECTED':
 			return {...state, fetching: false, loading: false, error: action.payload}
+
+		case 'RESET_MS':
+			return {...state, 
+				products: []
+			};
+
+		case 'RESET_MOOD':
+			return {...state,
+				products: []
+			};
+
 		default:
 		return state;
 	}

@@ -48,9 +48,10 @@ export const fetchProduct = (id) => {
 }
 
 export const loadMoreProducts = (query, page) => {
+	console.log(query)
   return function(dispatch){
   		dispatch({type: "LOAD_MORE_PRODUCTS_PENDING"})
-	    fetch(config.lcboapiURL+"/products?"+createQstring(query)+"&page="+page ,myInit)
+	    fetch(config.lcboapiURL+"/products"+createQstring(query)+"&page="+page ,myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
 	    	dispatch({type: "LOAD_MORE_PRODUCTS_FULFILLED", payload: data}) 
@@ -67,8 +68,10 @@ export const setMoneyStatus = (lvl) => {
 		return {type: "SET_MS_TO_LEVEL_3", current_$_status: lvl}
 	} else if (lvl === 2){
 		return {type: "SET_MS_TO_LEVEL_2", current_$_status: lvl}
-	} else {
+	} else if (lvl === 1) {
 		return {type: "SET_MS_TO_LEVEL_1", current_$_status: lvl}
+	} else {
+		return {type: "RESET_MS"}
 	}
 }
 
@@ -80,6 +83,6 @@ export const setMood = (mood) => {
 		case 'kosher':
 			return {type: "SET_MOOD_TO_KOSHER", current_mood: mood}
 		default:
-		return;
+		return {type: "RESET_MOOD"}
 	}
 }
