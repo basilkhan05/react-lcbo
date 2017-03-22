@@ -6,6 +6,7 @@ const LoaderScreen = () => (
   <Segment className="page-loader">
 	  <Dimmer active inverted>
 	    <Loader indeterminate={true} size='massive'>
+	    <h1>Getting</h1>
 	      <Image className="ui centered image" src={logo} />
 	      <h1>Hold on ... </h1>
 	    </Loader>

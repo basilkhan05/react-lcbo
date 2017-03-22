@@ -33,27 +33,8 @@
   transition: opacity 1000ms ease-in;
 }
 
-.mood-selector, .money-status-selector{
-  position: fixed !important;
-  height: 100%;
-  width: 100%;
+.sherry-background{
   background: #70e1f5; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #70e1f5 , #ffd194); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #70e1f5 , #ffd194); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.money-status-selector{
-  z-index: 11;
-}
-.mood-selector{
-  z-index: 10;
-}
-
-.selector-container{
-/*  height: 80%;
-  width: 80%;*/
-  /*margin: -40% 0 0 -40%;*/
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  margin-right: auto; margin-left: auto
 }

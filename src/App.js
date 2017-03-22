@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoaderScreen from './components/Loader';
+import MoodSelector from './components/MoodSelector';
 import { Button, Segment } from 'semantic-ui-react'
 import { setMoneyStatus , setMood } from './actions'
 import { money_status, moods } from './utilities/moods'
@@ -30,7 +31,7 @@ class App extends Component {
                 <Button inverted color='red'  onClick={()  => {this.props.dispatch(setMoneyStatus(status.action_arg)) }}>{status.description}</Button>
               </div>
               ));
-const MoodComponent =  moods.map((mood, idx) => (
+  const MoodComponent =  moods.map((mood, idx) => (
               <div key={idx}>
                <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood(mood.action_arg)) }}>{mood.action_arg}</Button>
               </div>
@@ -45,26 +46,14 @@ const MoodComponent =  moods.map((mood, idx) => (
           transitionLeave={true}>
       <div>
 
-      {this.props.loading ? <LoaderScreen /> : null}
+      {this.props.loading ? 
+        <LoaderScreen /> 
+        : null}
 
-      {this.props.mood_is_set ? null 
-        : 
+      
+      <MoodSelector all_moods={this.props.all_moods} dispatch={this.props.dispatch} />       
 
-        <div className="mood-selector">
-          <div className="selector-container">
-            {MoodComponent}
-          </div>
-        </div> 
-
-      }
-
-      {this.props.money_status_is_set ? null : 
-        <div className="money-status-selector">
-          <div className="selector-container">
-            {StatusComponent}
-          </div>
-        </div>
-      }
+      
 
       <div className="ui container">
       <Header dispatch={this.props.dispatch} all_moods={this.props.all_moods} />

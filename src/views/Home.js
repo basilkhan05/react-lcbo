@@ -88,7 +88,7 @@ class Home extends React.Component {
                 disabled={this.props.fetching ? true : false }
                 >
                 {this.props.fetching 
-                  ? <span> <Icon loading name='spinner' /> FETCHING BOOZE ...  </span>
+                  ? <span> <Icon loading name='spinner' /> FETCHING ...  </span>
                   : <span> GIMME MORE </span>
                 }
             </Button>
