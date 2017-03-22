@@ -25,7 +25,12 @@ const mapStateToProps = (store) => {
 
 
 class Home extends React.Component {
-
+  componentDidMount(){
+    // console.log(this.props.product_query)
+    if (this.props.products.length < 1 && this.props.mood_is_set && this.props.money_status_is_set) {
+      this.props.dispatch(fetchProducts(productQuery[this.props.current_$_status][this.props.current_mood]));
+    } 
+  }
   componentDidUpdate(){
     // console.log(this.props.product_query)
     if (this.props.products.length < 1 && this.props.mood_is_set && this.props.money_status_is_set) {

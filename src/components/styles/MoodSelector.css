@@ -1,5 +1,6 @@
 .header{
 	border: 0 !important;
+	border: none;
 }
 .modal{
 	border-radius: 0 !important;
