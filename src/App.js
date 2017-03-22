@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer';
 import LoaderScreen from './components/Loader';
 import { Button, Segment } from 'semantic-ui-react'
 import { setMoneyStatus , setMood } from './actions'
+import { money_status, moods } from './utilities/moods'
 
 import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -24,10 +25,21 @@ const mapStateToProps = (store) => {
 class App extends Component {
 
   render() {
+    const StatusComponent =  money_status.map((status, idx) => (
+              <div key={status.action_arg}>
+                <Button inverted color='red'  onClick={()  => {this.props.dispatch(setMoneyStatus(status.action_arg)) }}>{status.description}</Button>
+              </div>
+              ));
+const MoodComponent =  moods.map((mood, idx) => (
+              <div key={idx}>
+               <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood(mood.action_arg)) }}>{mood.action_arg}</Button>
+              </div>
+              ));
     return (
       <ReactCSSTransitionGroup
           transitionName="page-loader"
-          transitionAppear={false}
+          transitionAppear={true}
+          transitionAppearTimeout={1000}
           transitionLeaveTimeout={200}
           transitionEnter={false}
           transitionLeave={true}>
@@ -40,19 +52,16 @@ class App extends Component {
 
         <div className="mood-selector">
           <div className="selector-container">
-            <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood('classy')) }}>Classy</Button>
-            <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood('kosher')) }}>Kosher</Button>
+            {MoodComponent}
           </div>
-        </div>
+        </div> 
 
       }
 
       {this.props.money_status_is_set ? null : 
         <div className="money-status-selector">
           <div className="selector-container">
-            <Button inverted color='red' onClick={()  => {this.props.dispatch(setMoneyStatus(1)) }}>$</Button>
-            <Button inverted color='red' onClick={()  => {this.props.dispatch(setMoneyStatus(2)) }}>$$</Button>
-            <Button inverted color='red' onClick={()  => {this.props.dispatch(setMoneyStatus(3)) }}>$$$</Button>
+            {StatusComponent}
           </div>
         </div>
       }

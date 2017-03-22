@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Grid, Button, Statistic, Icon } from 'semantic-ui-react'
-import { fetchProducts, loadMoreProducts } from '../actions'
+import { fetchProducts, loadMoreProducts, getQuery } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
 import './styles/Home.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
+import { productQuery } from '../utilities/moods'
 
 
 const mapStateToProps = (store) => {
@@ -17,7 +17,9 @@ const mapStateToProps = (store) => {
      fetching: store.products.fetching,
      money_status_is_set: store.moods.money_status_is_set,
      mood_is_set: store.moods.mood_is_set,
-     product_query: store.moods.product_query
+     product_query: store.moods.product_query,
+     current_mood: store.moods.current_mood , 
+     current_$_status: store.moods.current_$_status
   }
 }
 
@@ -25,9 +27,9 @@ const mapStateToProps = (store) => {
 class Home extends React.Component {
 
   componentDidUpdate(){
-    console.log(this.props.product_query)
+    // console.log(this.props.product_query)
     if (this.props.products.length < 1 && this.props.mood_is_set && this.props.money_status_is_set) {
-      this.props.dispatch(fetchProducts(this.props.product_query));
+      this.props.dispatch(fetchProducts(productQuery[this.props.current_$_status][this.props.current_mood]));
     } 
   }
 
@@ -78,7 +80,7 @@ class Home extends React.Component {
             <Button 
                 onClick={
                   ()  => 
-                  {this.props.dispatch(loadMoreProducts(this.props.product_query, nextPage)) }
+                  {this.props.dispatch(loadMoreProducts(productQuery[this.props.current_$_status][this.props.current_mood], nextPage)) }
                 } 
                 className="load-button" 
                 primary 

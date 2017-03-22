@@ -11,6 +11,16 @@ var myInit = { method: 'GET',
 	           cache: 'default' 
 	       	};
 
+const productQuery = {
+	1 : [
+
+		'kosher' : {
+			'where': 'is_vqa'
+		}
+
+	]
+}
+
 const createQstring = R.compose(
       R.concat('?'),
       R.join('&'),
@@ -20,7 +30,7 @@ const createQstring = R.compose(
 export const fetchProducts = (query) => {
   return function(dispatch){
   		dispatch({type: "FETCH_PRODUCTS_PENDING"})
-	    fetch(config.lcboapiURL+"/products"+createQstring(query), myInit)
+	    fetch(config.lcboapiURL+"/products"+createQstring(query) , myInit)
 	    .then((response) => {
 	    	response.json().then(function(data) {
 	    	dispatch({type: "FETCH_PRODUCTS_FULFILLED", payload: data}) 
@@ -64,24 +74,42 @@ export const loadMoreProducts = (query, page) => {
  }
 
 export const setMoneyStatus = (lvl) => {
-	if (lvl === 3) {
-		return {type: "SET_MS_TO_LEVEL_3", current_$_status: lvl}
-	} else if (lvl === 2){
-		return {type: "SET_MS_TO_LEVEL_2", current_$_status: lvl}
-	} else if (lvl === 1) {
-		return {type: "SET_MS_TO_LEVEL_1", current_$_status: lvl}
+	if (lvl) {
+		return {type: "SET_MS", current_$_status: lvl}
 	} else {
-		return {type: "RESET_MOOD"}
+		return {type: "RESET_MS"}
 	}
 }
 
 
 export const setMood = (mood) => {
-	switch (mood) {
-		case 'classy':
-			return {type: "SET_MOOD_TO_CLASSY", current_mood: mood}
-		case 'kosher':
-			return {type: "SET_MOOD_TO_KOSHER", current_mood: mood}
+	if (mood) {
+		return {type: "SET_MOOD", current_mood: mood}
+	} else {
+		return {type: "RESET_MOOD"}
+	}
+}
+
+export const getQuery = (current_$_status, current_mood) => {
+	switch (current_$_status) {
+		case 1:
+			switch (current_mood) {
+				case 'kosher': 
+				return {type: "SET_QUERY", 
+				product_query: {
+						'order': 'alcohol_content.desc',
+						'where': 'is_vqa'
+					} 
+				}
+			}
+		case 2:
+			switch (current_mood) {
+
+			}
+		case 3:
+			switch (current_mood) {
+
+			}
 		default:
 		return {type: "RESET_MOOD"}
 	}
