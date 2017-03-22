@@ -2,7 +2,9 @@ import React, { Component }from 'react'
 import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 import { setMoneyStatus , setMood } from '../actions'
 import { money_status, moods } from '../utilities/moods'
+import './styles/MoodSelector.css'
 
+import logo from '../../public/logo.png'
 
 
 class  MoodSelector extends Component {
@@ -22,13 +24,13 @@ const MoodComponent =  moods.map((mood, idx) => (
 
 const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_moods.mood_is_set;
  return(
-  <Modal className='sherry-background' open={!selectorOpen} size={'fullscreen'}>
-    <Modal.Header>Profile Picture</Modal.Header>
-    <Modal.Content image>
-      <Image wrapped size='medium' src='/assets/images/wireframe/image.png' />
-      <Modal.Description>
-        <Header>Modal Header</Header>
-        <p>This is an example of expanded content that will cause the modals dimmer to scroll</p>
+  <Modal  open={!selectorOpen} size={'fullscreen'}>
+    <Modal.Header className='sherry-background'>
+    <h1 className="center"> Welcome to </h1>
+    <Image className="ui centered image" src={logo} /></Modal.Header>
+    <Modal.Content image className='sherry-background'>
+      <Modal.Description className="center">
+        <Header className="center">Modal Header... What occasion are you looking for</Header>
         {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null 
         : 
 
@@ -49,12 +51,6 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
       }
       </Modal.Description>
     </Modal.Content>
-    <Modal.Actions>
-      <Button primary>
-        Proceed <Icon name='right chevron' />
-      </Button>
-    </Modal.Actions>
-    
   </Modal>
 )
 

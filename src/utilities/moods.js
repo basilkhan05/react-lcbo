@@ -141,7 +141,7 @@ export const productQuery = {
 						'order': 'regular_price_in_cents.asc',
 						'where': 'is_vqa,'
 					},
-		'relax' : {
+		'local' : {
 						'order': 'regular_price_in_cents.asc',
 						'where': 'is_ocb,'
 					},

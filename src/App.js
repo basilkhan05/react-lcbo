@@ -3,9 +3,6 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoaderScreen from './components/Loader';
 import MoodSelector from './components/MoodSelector';
-import { Button, Segment } from 'semantic-ui-react'
-import { setMoneyStatus , setMood } from './actions'
-import { money_status, moods } from './utilities/moods'
 
 import { connect } from "react-redux"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -26,16 +23,7 @@ const mapStateToProps = (store) => {
 class App extends Component {
 
   render() {
-    const StatusComponent =  money_status.map((status, idx) => (
-              <div key={status.action_arg}>
-                <Button inverted color='red'  onClick={()  => {this.props.dispatch(setMoneyStatus(status.action_arg)) }}>{status.description}</Button>
-              </div>
-              ));
-  const MoodComponent =  moods.map((mood, idx) => (
-              <div key={idx}>
-               <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood(mood.action_arg)) }}>{mood.action_arg}</Button>
-              </div>
-              ));
+
     return (
       <ReactCSSTransitionGroup
           transitionName="page-loader"
