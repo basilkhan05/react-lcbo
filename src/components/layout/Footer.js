@@ -47,10 +47,8 @@ class Footer extends Component {
         <div className="ui section divider"></div>
         <Image className="ui centered image" src={logo} />
         <div className="ui horizontal small divided link list">
-          <a className="item" href="#">Site Map</a>
-          <a className="item" href="#">Contact Us</a>
-          <a className="item" href="#">Terms and Conditions</a>
-          <a className="item" href="#">Privacy Policy</a>
+          <a className="item" target="_blank" href="http://basilkhan.ca">Basil Khan</a>
+          <a className="item" target="_blank" href="https://github.com/basilkhan05">Github</a>
         </div>
       </div>
     </div>
