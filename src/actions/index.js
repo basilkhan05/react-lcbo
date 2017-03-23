@@ -11,15 +11,6 @@ var myInit = { method: 'GET',
 	           cache: 'default' 
 	       	};
 
-const productQuery = {
-	1 : [
-
-		'kosher' : {
-			'where': 'is_vqa'
-		}
-
-	]
-}
 
 const createQstring = R.compose(
       R.concat('?'),
@@ -90,27 +81,3 @@ export const setMood = (mood) => {
 	}
 }
 
-export const getQuery = (current_$_status, current_mood) => {
-	switch (current_$_status) {
-		case 1:
-			switch (current_mood) {
-				case 'kosher': 
-				return {type: "SET_QUERY", 
-				product_query: {
-						'order': 'alcohol_content.desc',
-						'where': 'is_vqa'
-					} 
-				}
-			}
-		case 2:
-			switch (current_mood) {
-
-			}
-		case 3:
-			switch (current_mood) {
-
-			}
-		default:
-		return {type: "RESET_MOOD"}
-	}
-}
