@@ -130,8 +130,7 @@ export const productQuery = {
 						'where': 'is_vqa'
 					},
 		'rooftop' : {
-						'order': 'regular_price_in_cents.asc',
-						'where': 'is_vqa'
+						'order': 'volume_in_milliliters.desc,regular_price_in_cents.asc'
 					},
 		'loyalty' : {
 						'order': 'regular_price_in_cents.asc',

@@ -1,6 +1,5 @@
-import React, { Component }from 'react'
+import React, { Component } from 'react'
 import { Button, Header, Icon, Image, Modal, Grid } from 'semantic-ui-react'
-import { setMoneyStatus , setMood } from '../actions'
 import { money_status, moods } from '../utilities/moods'
 import './styles/MoodSelector.css'
 import MoodCard from './MoodCard'
@@ -13,14 +12,14 @@ class  MoodSelector extends Component {
 render() {
 
 const StatusComponent =  money_status.map((status, idx) => (
-          <div key={status.action_arg}>
-            <Button inverted color='red'  onClick={()  => {this.props.dispatch(setMoneyStatus(status.action_arg)) }}>{status.description}</Button>
-          </div>
+          <Grid.Column key={idx}>
+            <MoodCard status={status.action_arg} dispatch={this.props.dispatch} />
+          </Grid.Column>
           ));
 const MoodComponent =  moods.map((mood, idx) => (
-          <div key={idx}>
-           <Button inverted color='red' onClick={()  => {this.props.dispatch(setMood(mood.action_arg)) }}>{mood.action_arg}</Button>
-          </div>
+			<Grid.Column key={idx}>
+          	<MoodCard mood={mood.action_arg} dispatch={this.props.dispatch} />
+          	</Grid.Column>
           ));
 
 const d = new Date();
@@ -44,25 +43,20 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
     <Modal.Content image className='sherry-background'>
       <Modal.Description className="center">
         <Header>It is {n}... What occasion are you looking for</Header>
-        <Grid columns={3} stackable={true}>
-        <MoodCard /><MoodCard /><MoodCard />
-        </Grid>
         {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null 
         : 
-
+			<Grid columns={3} stackable={true}>
+					{MoodComponent}
+			</Grid>
+      	}
         
-          <div className="selector-container">
-            {MoodComponent}
-          </div>
-        
 
-      }
 
       {this.props.all_moods.money_status_is_set ? null : 
-       
-          <div className="selector-container">
-            {StatusComponent}
-          </div>
+        <Grid columns={3} stackable={true}>
+        {StatusComponent}
+        </Grid>
+
        
       }
       </Modal.Description>
