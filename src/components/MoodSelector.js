@@ -13,12 +13,12 @@ render() {
 
 const StatusComponent =  money_status.map((status, idx) => (
           <Grid.Column key={idx}>
-            <MoodCard status={status.action_arg} dispatch={this.props.dispatch} />
+            	<MoodCard status={status.action_arg} dispatch={this.props.dispatch} />
           </Grid.Column>
           ));
 const MoodComponent =  moods.map((mood, idx) => (
 			<Grid.Column key={idx}>
-          	<MoodCard mood={mood.action_arg} dispatch={this.props.dispatch} />
+          		<MoodCard mood={mood.action_arg} dispatch={this.props.dispatch} />
           	</Grid.Column>
           ));
 
@@ -39,10 +39,10 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
   <Modal  open={!selectorOpen} size={'fullscreen'}>
     <Modal.Header className='sherry-background'>
     <h1 className="center"> Welcome to </h1>
-    <Image className="ui centered image" src={logo} /></Modal.Header>
+    <Image className="ui centered image mood-selector" src={logo} /></Modal.Header>
     <Modal.Content image className='sherry-background'>
       <Modal.Description className="center">
-        <Header>It is {n}... What occasion are you looking for</Header>
+        <Header>It is {n}... Have your pick</Header>
         {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null 
         : 
 			<Grid columns={3} stackable={true}>

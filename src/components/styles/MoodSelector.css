@@ -4,11 +4,6 @@
 }
 .modal{
 	border-radius: 0 !important;
-/*	margin: 0 !important;
-	margin-right: 0 !important;
-	margin-left: 0 !important;
-	height: 100%;
-	width: 100%;*/
 	box-shadow: none !important;
 }
 .modals{
@@ -17,6 +12,12 @@
   background: linear-gradient(to left, #70e1f5 , #ffd194) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-.image{
+.image.mood-selector{
 	width: 300px;
+}
+.image{
+	background: none !important	;
+}
+.content{
+	border: none !important	;
 }
