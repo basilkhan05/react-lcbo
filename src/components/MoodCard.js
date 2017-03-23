@@ -15,13 +15,18 @@ function findMood(moods){
 function findStatus(money_status){
   return money_status.action_arg === status
 }
-const description = mood ? moods.find(findMood).description : money_status.find(findStatus).description
+
+const image = mood ? 'http://basilkhan.ca/projects/TipZee/public/'+mood+'.png' :
+			  (status ? 'http://basilkhan.ca/projects/TipZee/public/'+status+'.png' : null)
+
+const description = mood ? moods.find(findMood).description : (money_status ? money_status.find(findStatus).description : null)
+const long_description = mood ? moods.find(findMood).long_description : (money_status ? money_status.find(findStatus).long_description : null)
   return(
     <Card style={{margin: '0 auto', background: 'none'}}
-      onClick={()  => {mood ? this.props.dispatch(setMood(mood)) : dispatch(setMoneyStatus(status)) }}
-      image='http://cdn.pymnts.com/wp-content/uploads/2016/03/Square-logo.png'
+      onClick={()  => {mood ? dispatch(setMood(mood)) : dispatch(setMoneyStatus(status)) }}
+      image={image}
       header={description}
-      description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+      description={long_description}
     />
   )
    
