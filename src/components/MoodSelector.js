@@ -3,6 +3,7 @@ import { Button, Header, Icon, Image, Modal, Grid } from 'semantic-ui-react'
 import { money_status, moods } from '../utilities/moods'
 import './styles/MoodSelector.css'
 import MoodCard from './MoodCard'
+import TimePrompt from './TimePrompt'
 
 import logo from '../../public/logo.png'
 
@@ -22,17 +23,7 @@ const MoodComponent =  moods.map((mood, idx) => (
           	</Grid.Column>
           ));
 
-const d = new Date();
-const dayoftheweek = new Array(7);
-dayoftheweek[0] =  "Sunday";
-dayoftheweek[1] = "Monday";
-dayoftheweek[2] = "Tuesday";
-dayoftheweek[3] = "Wednesday";
-dayoftheweek[4] = "Thursday";
-dayoftheweek[5] = "Friday";
-dayoftheweek[6] = "Saturday";
 
-const n = dayoftheweek[d.getDay()];
 
 const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_moods.mood_is_set;
  return(
@@ -41,10 +32,10 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
     <Image className="ui centered image mood-selector" src={logo} /></Modal.Header>
     <Modal.Content image className='sherry-background'>
       <Modal.Description className="center">
-        <Header>It is {n}... Have your pick</Header>
+        <TimePrompt />
         {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null : 
           <div>
-            <h1> What is your budget?</h1>
+          <h1> What are you in the mood for...? </h1>
       			<Grid columns={3} stackable={true}>
 
       					{MoodComponent}
@@ -56,7 +47,8 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
 
       {this.props.all_moods.money_status_is_set ? null : 
         <div>
-          <h1> What are you in the mood for...? </h1>
+
+          <h1> What is your budget?</h1>
         <Grid columns={3} stackable={true}>
           {StatusComponent}
         </Grid>

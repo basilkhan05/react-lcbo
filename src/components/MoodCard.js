@@ -22,7 +22,8 @@ const image = mood ? 'http://basilkhan.ca/projects/TipZee/public/'+mood+'.png' :
 const description = mood ? moods.find(findMood).description : (money_status ? money_status.find(findStatus).description : null)
 const long_description = mood ? moods.find(findMood).long_description : (money_status ? money_status.find(findStatus).long_description : null)
   return(
-    <Card style={{margin: '0 auto', background: 'none'}}
+    <Card style={{margin: '0 auto', background: 'none', border: '3px solid #000000'}}
+      className='mood-card'
       onClick={()  => {mood ? dispatch(setMood(mood)) : dispatch(setMoneyStatus(status)) }}
       image={image}
       header={description}

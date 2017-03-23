@@ -125,7 +125,7 @@ export const productQuery = {
 					},
 		'classy' : {
 						'order': 'regular_price_in_cents.asc',
-						'where': 'wine'
+						'q': 'wine'
 					},
 		'groups' : {
 						'order': 'total_package_volume_in_milliliters.desc,regular_price_in_cents.asc'
@@ -168,7 +168,7 @@ export const productQuery = {
 						'where': 'is_vqa,'
 					},
 		'classy' : {
-						'where': 'wine'
+						'q': 'wine'
 					},
 		'groups' : {
 						'order': 'total_package_volume_in_milliliters.desc,regular_price_in_cents.asc'
@@ -208,7 +208,7 @@ export const productQuery = {
 					},
 		'classy' : {
 						'order': 'regular_price_in_cents.desc',
-						'where': 'wine'
+						'q': 'wine'
 					},
 		'groups' : {
 						'order': 'total_package_volume_in_milliliters.desc,regular_price_in_cents.desc'
