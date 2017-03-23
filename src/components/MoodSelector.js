@@ -38,26 +38,29 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
  return(
   <Modal  open={!selectorOpen} size={'fullscreen'}>
     <Modal.Header className='sherry-background'>
-    <h1 className="center"> Welcome to </h1>
     <Image className="ui centered image mood-selector" src={logo} /></Modal.Header>
     <Modal.Content image className='sherry-background'>
       <Modal.Description className="center">
         <Header>It is {n}... Have your pick</Header>
-        {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null 
-        : 
-			<Grid columns={3} stackable={true}>
-					{MoodComponent}
-			</Grid>
+        {this.props.all_moods.mood_is_set || !this.props.all_moods.money_status_is_set ? null : 
+          <div>
+            <h1> What is your budget?</h1>
+      			<Grid columns={3} stackable={true}>
+
+      					{MoodComponent}
+      			</Grid>
+          </div>
       	}
         
 
 
       {this.props.all_moods.money_status_is_set ? null : 
+        <div>
+          <h1> What are you in the mood for...? </h1>
         <Grid columns={3} stackable={true}>
-        {StatusComponent}
+          {StatusComponent}
         </Grid>
-
-       
+        </div>       
       }
       </Modal.Description>
     </Modal.Content>
