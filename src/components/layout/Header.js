@@ -1,13 +1,13 @@
 import { Link } from 'react-router'
 import React, { Component } from 'react'
-import { Input, Menu, Segment, Image, Button } from 'semantic-ui-react'
+import { Input, Menu, Segment, Image, Button, Icon } from 'semantic-ui-react'
 import '../styles/Header.css'
 import logo from '../../../public/logo.png'
 import { setMoneyStatus, setMood } from '../../actions'
 
 import { money_status, moods } from '../../utilities/moods'
 
-class Header extends Component {
+class MenuHeader extends Component {
 
 
   componentDidUpdate(){
@@ -29,13 +29,22 @@ class Header extends Component {
 
     return (
       <div>
-
-        <Menu pointing secondary>
-        <Segment className="logo-section">
+        <Menu color={'white'} widths={3}>
+        <Menu.Item name='home' onClick={this.handleItemClick}>
+           <Icon name='caret left' size='huge' />
+        </Menu.Item>
+        <Menu.Item name='messages' onClick={this.handleItemClick} >
+          <Segment className="logo-section">
            <Link to={`/`}>
            <Image className="logo-image" src={logo} />
            </Link>
-        </Segment>
+          </Segment>
+        </Menu.Item>
+        <Menu.Item name='friends' onClick={this.handleItemClick} >
+        <Icon name='bars' size='huge' />
+        </Menu.Item>
+      </Menu>
+        <Menu pointing secondary stackable>
         <Menu.Menu>
             <Menu.Item>
               <Button
@@ -59,6 +68,8 @@ class Header extends Component {
               />
             </Menu.Item>
           </Menu.Menu>
+        
+        
         </Menu>
 
        
@@ -70,4 +81,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default MenuHeader;
