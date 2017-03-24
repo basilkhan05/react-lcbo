@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { Input, Menu, Segment, Image, Button, Icon } from 'semantic-ui-react'
 import '../styles/Header.css'
 import logo from '../../../public/logo.png'
-import { setMoneyStatus, setMood } from '../../actions'
+import { setMoneyStatus, setMood, openMenu } from '../../actions'
 
-import { money_status, moods } from '../../utilities/moods'
+
 
 class MenuHeader extends Component {
 
@@ -17,19 +17,11 @@ class MenuHeader extends Component {
   render() {
   const { current_$_status, current_mood } = this.props.all_moods 
 
-  function findMood(mood){
-    return mood.action_arg === current_mood
-  }
-  function findStatus(money_status){
-    return money_status.action_arg === current_$_status
-  }
 
-   const mood = current_mood ? moods.find(findMood).description : null;
-   const status = current_$_status ? money_status.find(findStatus).description : null
 
     return (
       <div>
-        <Menu color={'white'} widths={3}>
+        <Menu widths={3}>
         <Menu.Item name='home' onClick={this.handleItemClick}>
            <Icon name='caret left' size='huge' />
         </Menu.Item>
@@ -40,39 +32,10 @@ class MenuHeader extends Component {
            </Link>
           </Segment>
         </Menu.Item>
-        <Menu.Item name='friends' onClick={this.handleItemClick} >
+        <Menu.Item name='friends' onClick={()  => {this.props.dispatch(openMenu(true)) }}  >
         <Icon name='bars' size='huge' />
         </Menu.Item>
-      </Menu>
-        <Menu pointing secondary stackable>
-        <Menu.Menu>
-            <Menu.Item>
-              <Button
-              onClick={
-                  ()  => 
-                  {this.props.dispatch(setMoneyStatus()) }
-                } 
-                icon='remove'
-                label={{ as: 'a', basic: true, content: status }}
-
-                labelPosition='left'
-              />
-              <Button
-              onClick={
-                  ()  => 
-                  {this.props.dispatch(setMood()) }
-                } 
-                icon='remove'
-                label={{ as: 'a', basic: true, content: mood }}
-                labelPosition='left'
-              />
-            </Menu.Item>
-          </Menu.Menu>
-        
-        
-        </Menu>
-
-       
+      </Menu>      
       </div>
 
 

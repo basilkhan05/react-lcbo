@@ -81,3 +81,6 @@ export const setMood = (mood) => {
 	}
 }
 
+export const toggleMenu = (open) => {
+	return {type: "TOGGLE_MENU", menu_is_open: open}
+}

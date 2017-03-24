@@ -6,7 +6,7 @@ import MoodSelector from './components/MoodSelector';
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
 import { connect } from "react-redux"
-import { setMoneyStatus, setMood } from './actions'
+import { setMoneyStatus, setMood, openMenu } from './actions'
 import { money_status, moods } from './utilities/moods'
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -19,7 +19,8 @@ const mapStateToProps = (store) => {
      loading: store.products.loading,
      mood_is_set: store.moods.mood_is_set,
      money_status_is_set: store.moods.money_status_is_set,
-     all_moods: store.moods
+     all_moods: store.moods,
+     menu_is_open: store.products.menu_is_open
   }
 }
   
@@ -56,32 +57,21 @@ const { visible } = this.state
         : null}
 
       
-      <MoodSelector all_moods={this.props.all_moods} dispatch={this.props.dispatch} />       
-
-      
-<Button onClick={this.toggleVisibility}>Toggle Visibility</Button>
+      <MoodSelector all_moods={this.props.all_moods} dispatch={this.props.dispatch} />
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='scale down' width='wide' visible={visible} icon='labeled' vertical inverted >
-            <Menu.Item name='home'>
-              <Icon name='home' />
-              Home
+          <Sidebar as={Menu} animation='push' width='wide' visible={this.props.menu_is_open} icon='labeled' vertical inverted >
+            <Menu.Item name='close' onClick={()  => {this.props.dispatch(openMenu(false))}} >
+              <Icon name='remove' />
+              close
             </Menu.Item>
-            <Menu.Item name='gamepad'
-            onClick={
-                  ()  => 
-                  {this.props.dispatch(setMoneyStatus()) }
-                } >
-              <Image src={'http://basilkhan.ca/projects/TipZee/public/'+current_mood+'.png'}/>
-              {mood}
-            </Menu.Item>
-            <Menu.Item name='camera' 
-            onClick={
-                  ()  => 
-                  {this.props.dispatch(setMood()) }
-                } >
+            <Menu.Item name='status' onClick={()  => {this.props.dispatch(setMoneyStatus())}} >
                 <Image src={'http://basilkhan.ca/projects/TipZee/public/'+current_$_status+'.png'}/>
               
               {status}
+            </Menu.Item>
+            <Menu.Item name='mood' onClick={()  =>  {this.props.dispatch(setMood())}} >
+              <Image src={'http://basilkhan.ca/projects/TipZee/public/'+current_mood+'.png'}/>
+              {mood}
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>

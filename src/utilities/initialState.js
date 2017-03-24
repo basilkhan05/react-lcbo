@@ -5,7 +5,8 @@ export const productsInitialState = {
 	products: [],
 	product: [],
 	error: null,
-	pager: null
+	pager: null,
+	menu_is_open: false
 }
 
 export const moodsInitialState = {
