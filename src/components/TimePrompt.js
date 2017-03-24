@@ -15,23 +15,24 @@ dayoftheweek[6] = "Saturday";
 const n = dayoftheweek[d.getDay()];
 const today = new Date()
 const current_hour = today.getHours()
-const t = ''
-if (current_hour < 4) {
-  t ='late night'
-} else if (current_hour < 12) {
-  	t = 'morning'
-} else if (current_hour < 15) {
-	t = 'afternoon'
-} else if (current_hour < 19) {
-	t = 'evening'
-} else {
-	t = 'night'
+const t = (current_hour) => {
+	if (current_hour < 4) {
+	  return'late night'
+	} else if (current_hour < 12) {
+	  	return 'morning'
+	} else if (current_hour < 15) {
+		return 'afternoon'
+	} else if (current_hour < 19) {
+		return 'evening'
+	} else {
+		return 'night'
+	}
 }
 
 const TimePrompt = () => (
   <Header as='h2'>
   <Icon name='clock' size='large' />
-  	It is {n} {t}... Drink Responsibly
+  	It is {n} {t(current_hour)}... Drink Responsibly
   </Header>
 )
 

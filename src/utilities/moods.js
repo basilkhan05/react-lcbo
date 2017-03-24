@@ -98,7 +98,7 @@ export const money_status = [
 	{
 		image: '',
 		description: 'Living the Good Life',
-		long_description: '\“Alcohol may be man\'s worst enemy, but the bible says love your enemy.” \n― Frank Sinatra',
+		long_description: '“Alcohol may be man\'s worst enemy, but the bible says love your enemy.” \n― Frank Sinatra',
 		action: '',
 		action_arg: 2
 	},

@@ -3,7 +3,7 @@ import MenuHeader from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoaderScreen from './components/Loader';
 import MoodSelector from './components/MoodSelector';
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Image, Icon } from 'semantic-ui-react'
 
 import { connect } from "react-redux"
 import { setMoneyStatus, setMood, openMenu } from './actions'
@@ -26,18 +26,15 @@ const mapStateToProps = (store) => {
   
 
 class App extends Component {
-state = { visible: false }
-
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
   render() {
     const { current_$_status, current_mood } = this.props.all_moods 
-const { visible } = this.state
-  function findMood(mood){
-    return mood.action_arg === current_mood
-  }
-  function findStatus(money_status){
-    return money_status.action_arg === current_$_status
-  }
+    const { all_moods, menu_is_open, dispatch, loading } = this.props
+    function findMood(mood){
+      return mood.action_arg === current_mood
+    }
+    function findStatus(money_status){
+      return money_status.action_arg === current_$_status
+    }
 
    const mood = current_mood ? moods.find(findMood).description : null;
    const status = current_$_status ? money_status.find(findStatus).description : null
@@ -51,32 +48,33 @@ const { visible } = this.state
           transitionAppearTimeout={1000}
           transitionLeaveTimeout={200}
           transitionEnter={false}
-          transitionLeave={true}>
-        {this.props.loading ? 
+          transitionLeave={true}
+          onClick={menu_is_open ? ()  => {dispatch(openMenu(false))} : null} >
+        {loading ? 
         <LoaderScreen /> 
         : null}
 
       
-      <MoodSelector all_moods={this.props.all_moods} dispatch={this.props.dispatch} />
+        <MoodSelector all_moods={all_moods} dispatch={dispatch} />
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='wide' visible={this.props.menu_is_open} icon='labeled' vertical inverted >
-            <Menu.Item name='close' onClick={()  => {this.props.dispatch(openMenu(false))}} >
+          <Sidebar as={Menu} animation='push' width='wide' visible={menu_is_open} icon='labeled' vertical inverted >
+            <Menu.Item name='close' onClick={()  => {dispatch(openMenu(false))}} >
               <Icon name='remove' />
               close
             </Menu.Item>
-            <Menu.Item name='status' onClick={()  => {this.props.dispatch(setMoneyStatus())}} >
+            <Menu.Item name='status' onClick={()  => {dispatch(setMoneyStatus())}} >
                 <Image className="menu-mood-image" src={status_image}/>
               
               {status}
             </Menu.Item>
-            <Menu.Item name='mood' onClick={()  =>  {this.props.dispatch(setMood())}} >
+            <Menu.Item name='mood' onClick={()  =>  {dispatch(setMood())}} >
               <Image className="menu-mood-image" src={mood_image}/>
-              {mood}
+              <h2>{mood}</h2>
             </Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher>
-          <MenuHeader dispatch={this.props.dispatch} all_moods={this.props.all_moods} />
+          <MenuHeader dispatch={dispatch} all_moods={all_moods} />
           <div className="ui container">
             <div>
               {this.props.children}

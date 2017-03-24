@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Card, Icon } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react'
 import { setMoneyStatus , setMood } from '../actions'
 import { money_status, moods } from '../utilities/moods'
 

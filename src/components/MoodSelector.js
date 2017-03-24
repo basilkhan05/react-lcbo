@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Icon, Image, Modal, Grid } from 'semantic-ui-react'
+import { Image, Modal, Grid } from 'semantic-ui-react'
 import { money_status, moods } from '../utilities/moods'
 import './styles/MoodSelector.css'
 import MoodCard from './MoodCard'

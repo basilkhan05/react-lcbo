@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Grid, Button, Statistic, Icon } from 'semantic-ui-react'
-import { fetchProducts, loadMoreProducts, getQuery } from '../actions'
+import { fetchProducts, loadMoreProducts } from '../actions'
 
 import ProductPreviewCard  from '../components/ProductPreviewCard'
 // import LoaderScreen from '../components/Loader'
