@@ -17,8 +17,6 @@ class MenuHeader extends Component {
   render() {
   const { current_$_status, current_mood } = this.props.all_moods 
 
-
-
     return (
       <div>
         <Menu widths={3}>
@@ -35,7 +33,7 @@ class MenuHeader extends Component {
         <Menu.Item name='friends' onClick={()  => {this.props.dispatch(openMenu(true)) }}  >
         <Icon name='bars' size='huge' />
         </Menu.Item>
-      </Menu>      
+        </Menu>      
       </div>
 
 

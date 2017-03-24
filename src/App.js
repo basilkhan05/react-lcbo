@@ -41,6 +41,8 @@ const { visible } = this.state
 
    const mood = current_mood ? moods.find(findMood).description : null;
    const status = current_$_status ? money_status.find(findStatus).description : null
+   const mood_image = current_mood ? 'http://basilkhan.ca/projects/TipZee/public/'+current_mood+'.png' : null;
+   const status_image = current_$_status ? 'http://basilkhan.ca/projects/TipZee/public/'+current_$_status+'.png'  : null
 
     return (
       <ReactCSSTransitionGroup
@@ -50,9 +52,7 @@ const { visible } = this.state
           transitionLeaveTimeout={200}
           transitionEnter={false}
           transitionLeave={true}>
-      <div>
-
-      {this.props.loading ? 
+        {this.props.loading ? 
         <LoaderScreen /> 
         : null}
 
@@ -65,29 +65,26 @@ const { visible } = this.state
               close
             </Menu.Item>
             <Menu.Item name='status' onClick={()  => {this.props.dispatch(setMoneyStatus())}} >
-                <Image src={'http://basilkhan.ca/projects/TipZee/public/'+current_$_status+'.png'}/>
+                <Image className="menu-mood-image" src={status_image}/>
               
               {status}
             </Menu.Item>
             <Menu.Item name='mood' onClick={()  =>  {this.props.dispatch(setMood())}} >
-              <Image src={'http://basilkhan.ca/projects/TipZee/public/'+current_mood+'.png'}/>
+              <Image className="menu-mood-image" src={mood_image}/>
               {mood}
             </Menu.Item>
           </Sidebar>
+
           <Sidebar.Pusher>
-      <MenuHeader dispatch={this.props.dispatch} all_moods={this.props.all_moods} />
-      <div className="ui container">
-        <div>
-          {this.props.children}
-        </div>
-      </div>
-      <Footer />
-       </Sidebar.Pusher>
+          <MenuHeader dispatch={this.props.dispatch} all_moods={this.props.all_moods} />
+          <div className="ui container">
+            <div>
+              {this.props.children}
+            </div>
+          </div>
+          <Footer />
+          </Sidebar.Pusher>
         </Sidebar.Pushable>
-      </div>
-     
-      
-      
       </ReactCSSTransitionGroup>
     );
   }

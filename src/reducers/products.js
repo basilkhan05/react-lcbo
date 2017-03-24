@@ -34,7 +34,6 @@ const products = (state=productsInitialState, action) => {
 				products: []
 			};
 
-
 		case 'TOGGLE_MENU':
 			return {...state, menu_is_open: action.menu_is_open };
 

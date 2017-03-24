@@ -5,6 +5,9 @@
 .ui.stackable.four.column.grid{
 	text-align:center;
 }
+.ui.container{
+  margin-top: 35px;
+}
 .load-button{
 	margin-top: 100px !important;
 }
