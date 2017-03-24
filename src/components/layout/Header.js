@@ -21,11 +21,11 @@ class MenuHeader extends Component {
         <Menu.Item name='back' onClick={browserHistory.goBack}>
            <Icon name='caret left' size='huge' />
         </Menu.Item>
-        <Menu.Item name='home' onClick={browserHistory.goHome} >
+        <Menu.Item name='home' >
           <Segment className="logo-section">
-           <Link to={`/`}>
+          <Link to={`/`}>
            <Image className="logo-image" src={logo} />
-           </Link>
+          </Link>
           </Segment>
         </Menu.Item>
         <Menu.Item name='menu' onClick={()  => {this.props.dispatch(openMenu(true)) }}  >

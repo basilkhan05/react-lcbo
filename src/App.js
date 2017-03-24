@@ -63,9 +63,8 @@ class App extends Component {
               close
             </Menu.Item>
             <Menu.Item name='status' onClick={()  => {dispatch(setMoneyStatus())}} >
-                <Image className="menu-mood-image" src={status_image}/>
-              
-              {status}
+              <Image className="menu-mood-image" src={status_image}/>
+              <h2>{status}</h2>
             </Menu.Item>
             <Menu.Item name='mood' onClick={()  =>  {dispatch(setMood())}} >
               <Image className="menu-mood-image" src={mood_image}/>

@@ -17,7 +17,7 @@ const today = new Date()
 const current_hour = today.getHours()
 const t = (current_hour) => {
 	if (current_hour < 4) {
-	  return'late night'
+	  return'early morning'
 	} else if (current_hour < 12) {
 	  	return 'morning'
 	} else if (current_hour < 15) {

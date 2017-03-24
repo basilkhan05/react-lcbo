@@ -18,6 +18,9 @@
 .mood-card > img.image {
 	padding: 10px 0 10px 0 !important;
 }
+.mood-card{
+	height: 100%;
+}
 /*.image{
 	background: none !important	;
 }
