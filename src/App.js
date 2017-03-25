@@ -3,7 +3,7 @@ import MenuHeader from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import LoaderScreen from './components/Loader';
 import MoodSelector from './components/MoodSelector';
-import { Sidebar, Segment, Menu, Image, Icon } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Image, Icon, Button } from 'semantic-ui-react'
 
 import { connect } from "react-redux"
 import { setMoneyStatus, setMood, openMenu } from './actions'
@@ -82,6 +82,10 @@ class App extends Component {
           <Footer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
+
+          <div className="floating-icon">
+           <Button circular icon='chevron up' onClick={() => window.scrollTo(0, 0)} />
+          </div>
       </ReactCSSTransitionGroup>
     );
   }

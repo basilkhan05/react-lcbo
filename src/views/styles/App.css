@@ -41,7 +41,15 @@
   background: -webkit-linear-gradient(to left, #70e1f5 , #ffd194) !important; /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to left, #70e1f5 , #ffd194) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
+.floating-icon{
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  overflow: hidden;
+}
+.floating-icon > .button {
+  font-size: 2rem;
+}
 .menu-mood-image{
   height: 200px;
   margin: 0 auto;
