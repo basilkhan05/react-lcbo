@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux"
 
 import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
+import ProductDetailsTable from '../components/ProductDetailsTable'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -100,20 +101,36 @@ class Product extends React.Component {
           </Segment>
 
         </Grid.Column>
-
-        <Grid.Column>
-
-        </Grid.Column>
         
 
       </Grid>
 
       <Divider />
 
+      <Grid columns={1} stackable={true}>
+        <Grid.Column>
+        <Header as='h1'>GMAPS Place holder</Header>
+            <Segment>
+
+            <Header as='h5'>Product ID# {productData.id}</Header>
+
+          </Segment>
+      </Grid.Column>
+
+      </Grid>
+
+
       <Grid columns={2} stackable={true}>
+      <Grid.Column>
 
+          <Segment>
 
+            <Header as='h5'>Product ID# {productData.id}</Header>
+            <ProductDetailsTable productData={productData} />
 
+          </Segment>
+
+          </Grid.Column>
       </Grid>
 
       </ReactCSSTransitionGroup>
