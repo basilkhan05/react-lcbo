@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { Grid, Header, Image, Progress, Segment, Divider} from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
+import { formatCurrency , formatVolume } from '../utilities/utils'
 
 import { fetchProduct } from '../actions'
 
@@ -30,6 +32,7 @@ class Product extends React.Component {
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
                       : null);
     const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100;
+
 
     return (      
     <ReactCSSTransitionGroup
@@ -120,9 +123,22 @@ class Product extends React.Component {
       </Grid>
 
 
-      <Grid columns={2} stackable={true}>
-      <Grid.Column>
+      <Grid columns={3} stackable={true}>
 
+        <Grid.Column>
+          <Statistic value={productData.inventory_count} label='Total units' />
+        </Grid.Column>
+
+        <Grid.Column>
+         <Statistic value={formatCurrency(productData.inventory_price_in_cents)} label='Total retail price of all units' />
+        </Grid.Column>
+
+        <Grid.Column>
+         <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
+        </Grid.Column>
+      </Grid>
+
+      <Grid columns={2} stackable={true}>
           <Segment>
 
             <Header as='h5'>Product ID# {productData.id}</Header>
@@ -130,7 +146,6 @@ class Product extends React.Component {
 
           </Segment>
 
-          </Grid.Column>
       </Grid>
 
       </ReactCSSTransitionGroup>
