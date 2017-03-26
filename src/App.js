@@ -57,7 +57,7 @@ class App extends Component {
       
         <MoodSelector all_moods={all_moods} dispatch={dispatch} />
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='wide' visible={menu_is_open} icon='labeled' vertical inverted >
+          <Sidebar as={Menu} animation='slide along' width='wide' visible={menu_is_open} direction='right' icon='labeled' vertical inverted >
             <Menu.Item name='close' onClick={()  => {dispatch(openMenu(false))}} >
               <Icon name='remove' />
               close
@@ -83,9 +83,8 @@ class App extends Component {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
 
-          <div className="floating-icon">
-           <Button circular icon='chevron up' onClick={() => window.scrollTo(0, 0)} />
-          </div>
+           <Button className="floating-icon" circular icon='chevron up' onClick={() => window.scrollTo(0, 0)} />
+
       </ReactCSSTransitionGroup>
     );
   }

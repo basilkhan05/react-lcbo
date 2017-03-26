@@ -45,9 +45,6 @@
   position: fixed;
   bottom: 35px;
   right: 25px;
-  overflow: hidden;
-}
-.floating-icon > .button {
   font-size: 2rem;
 }
 .menu-mood-image{
