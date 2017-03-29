@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 
 import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
+// import CountryMap from '../components/CountryMap'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -33,6 +34,50 @@ class Product extends React.Component {
                       : null);
     const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100;
 
+    const productInfoData = [
+        {
+          description: 'LCBO Product Description',
+          long_description: 'Description',
+          data: productData.description,
+          icon: 'browser'
+        },
+        {
+          description: 'Released On',
+          long_description: 'Official release date',
+          data: productData.released_on,
+          icon: 'calendar'
+        },
+        {
+          description: 'Stock Type',
+          long_description: 'Either “LCBO” or “VINTAGES”',
+          data: productData.stock_type,
+          icon: 'shopping bag'
+        },
+        {
+          description: 'Serving Suggestion',
+          long_description: 'LCBO serving suggestion',
+          data: productData.serving_suggestion,
+          icon: 'comment'
+        },
+        {
+          description: 'Sugar (g/L)',
+          long_description: 'The amount of sugar that is contained in the product in grams per liter.',
+          data: productData.sugar_in_grams_per_liter,
+          icon: 'percent'
+        },
+        {
+          description: 'Sugar Content',
+          long_description: 'The product’s sweetness descriptor, is usually a designation such as extra-dry (XD), medium sweet (MS), etc.',
+          data: productData.sugar_content,
+          icon: 'list ul'
+        },
+        {
+          description: 'Tasting Note',
+          long_description: 'Professional tasting note',
+          data: productData.tasting_note,
+          icon: 'comments'
+        }
+    ]
 
     return (      
     <ReactCSSTransitionGroup
@@ -111,20 +156,23 @@ class Product extends React.Component {
       <Divider />
 
       <Grid columns={1} stackable={true}>
-        <Grid.Column>
-        <Header as='h1'>GMAPS Place holder</Header>
-            <Segment>
-
-            <Header as='h5'>Product ID# {productData.id}</Header>
-
+          <Grid.Column>
+          <Segment>
+            <Header as='h2'>Product Information for {productData.name}</Header>
+            <ProductDetailsTable productInfoData={productInfoData} />
           </Segment>
-      </Grid.Column>
+          </Grid.Column>
+      </Grid>
+
+      <Grid columns={1} stackable={true}>
+        <Grid.Column>
+          {/* <CountryMap countryOfOrigin={productData.origin}/> */}
+        </Grid.Column>
 
       </Grid>
 
-
+      <Header as='h1'>Inventory across all LCBO stores</Header>
       <Grid columns={3} stackable={true}>
-
         <Grid.Column>
           <Statistic value={productData.inventory_count} label='Total units' />
         </Grid.Column>
@@ -136,16 +184,6 @@ class Product extends React.Component {
         <Grid.Column>
          <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
         </Grid.Column>
-      </Grid>
-
-      <Grid columns={2} stackable={true}>
-          <Segment>
-
-            <Header as='h5'>Product ID# {productData.id}</Header>
-            <ProductDetailsTable productData={productData} />
-
-          </Segment>
-
       </Grid>
 
       </ReactCSSTransitionGroup>
