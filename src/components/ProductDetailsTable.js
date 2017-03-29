@@ -14,7 +14,7 @@ class ProductDetailsTable extends React.Component {
       <Table.Body>
       	{productInfoData.map((data, idx) => (
       	data.data ?
-      	<Table.Row>
+      	<Table.Row key={idx}>
           <Table.Cell>
             <Header as='h4' image>
               <Icon name={data.icon} />
