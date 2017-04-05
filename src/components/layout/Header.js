@@ -1,5 +1,5 @@
 import { Link, browserHistory } from 'react-router'
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Menu, Segment, Image, Icon } from 'semantic-ui-react'
 import '../styles/Header.css'
 import logo from '../../../public/logo.png'
@@ -38,6 +38,11 @@ class MenuHeader extends Component {
 
     )
   }
+}
+
+
+MenuHeader.propTypes = {
+  dispatch: PropTypes.func.isRequired
 }
 
 export default MenuHeader;
