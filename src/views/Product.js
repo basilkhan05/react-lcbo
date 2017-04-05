@@ -82,31 +82,70 @@ class Product extends React.Component {
     const productPromotionalData = [
         {
           description: 'Bonus Reward Miles',
-          long_description: null,
+          long_description: 'Number of bonus air miles',
           data: productData.bonus_reward_miles,
           icon: null
         },
         {
           description: 'Bonus Reward Miles Ends On',
-          long_description: null,
+          long_description: 'When bonus air miles are no longer valid',
           data: productData.bonus_reward_miles_ends_on,
           icon: null
         },
         {
           description: 'Has Bonus Reward Miles',
-          long_description: null,
+          long_description: 'Yes if the product has bonus air miles',
           data: productData.has_bonus_reward_miles,
           icon: null
         },
         {
           description: 'Has Limited Time Offer',
-          long_description: null,
+          long_description: 'Yes if the product is on sale',
           data: productData.has_limited_time_offer,
           icon: null
         },
         {
           description: 'Has Value Added Promotion',
-          long_description: null,
+          long_description: 'Contents of the value added promotion offer if available',
+          data: productData.has_value_added_promotion,
+          icon: null
+        }
+    ]
+    
+    const productIndicatorData = [
+        {
+          description: 'Product is Dead',
+          long_description: 'When products are removed from the LCBO catalog they are marked as “dead”',
+          data: productData.bonus_reward_miles,
+          icon: null
+        },
+        {
+          description: 'Product is Discontinued',
+          long_description: 'Yes if the product has been marked as discontinued by the LCBO',
+          data: productData.bonus_reward_miles_ends_on,
+          icon: null
+        },
+        {
+          description: 'Product is Kosher',
+          long_description: 'Yes if the product is designated as Kosher.',
+          data: productData.has_bonus_reward_miles,
+          icon: null
+        },
+        {
+          description: 'Seasonal Product',
+          long_description: 'Yes if the product is designated as seasonal',
+          data: productData.has_limited_time_offer,
+          icon: null
+        },
+        {
+          description: 'VQA Product',
+          long_description: 'Yes if the product is designated as VQA',
+          data: productData.has_value_added_promotion,
+          icon: null
+        },
+        {
+          description: 'OCB Product',
+          long_description: 'Yes if the product is produced by a member of the Ontario Craft Brewers',
           data: productData.has_value_added_promotion,
           icon: null
         }
@@ -186,18 +225,24 @@ class Product extends React.Component {
 
       </Grid>
 
-      <Header as='h1'>Inventory across all LCBO stores</Header>
-      <Grid columns={3} stackable={true} className="inventory-stats">
+      <Grid columns={1} stackable={true}>
         <Grid.Column>
-          <Statistic value={productData.inventory_count} label='Total units' />
-        </Grid.Column>
+          <Segment>
+          <Header as='h1'>Inventory across all LCBO stores</Header>
+          <Grid columns={3} stackable={true} className="inventory-stats">
+            <Grid.Column>
+              <Statistic value={productData.inventory_count} label='Total units' />
+            </Grid.Column>
 
-        <Grid.Column>
-         <Statistic value={formatCurrency(productData.inventory_price_in_cents)} label='Total retail price of all units' />
-        </Grid.Column>
+            <Grid.Column>
+             <Statistic value={formatCurrency(productData.inventory_price_in_cents)} label='Total retail price of all units' />
+            </Grid.Column>
 
-        <Grid.Column>
-         <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
+            <Grid.Column>
+             <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
+            </Grid.Column>
+          </Grid>
+          </Segment>
         </Grid.Column>
       </Grid>
 
@@ -217,22 +262,24 @@ class Product extends React.Component {
 
       </Grid>
 
-      <Grid columns={1} stackable={true}>
+      <Grid columns={2} stackable={true}>
           <Grid.Column>
           <Segment>
             <Header as='h2'>Promotional Product Information for {productData.name}</Header>
             <ProductDetailsTable productInfoData={productPromotionalData} />
           </Segment>
           </Grid.Column>
-      </Grid>
 
-      <Grid columns={1} stackable={true}>
           <Grid.Column>
           <Segment>
             <Header as='h2'>Product Indicators for {productData.name}</Header>
-            <ProductDetailsTable productInfoData={productInfoData} />
+            <ProductDetailsTable productInfoData={productIndicatorData} />
           </Segment>
           </Grid.Column>
+      </Grid>
+
+      <Grid columns={1} stackable={true}>
+          
       </Grid>
 
       </ReactCSSTransitionGroup>
