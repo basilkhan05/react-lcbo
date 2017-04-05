@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Card } from 'semantic-ui-react'
 import { setMoneyStatus , setMood } from '../actions'
 import { money_status, moods } from '../utilities/moods'
@@ -32,6 +32,12 @@ const long_description = mood ? moods.find(findMood).long_description : (money_s
   )
    
 }
+}
+
+MoodCard.propTypes = {
+  mood: PropTypes.string,
+  status: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
 }
 
 export default MoodCard
