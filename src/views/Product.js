@@ -223,6 +223,12 @@ class Product extends React.Component {
         </Grid.Column>
       </Grid>
 
+      <Grid columns={1} stackable={true}>
+        <Grid.Column>
+
+        </Grid.Column>
+      </Grid>
+
       <Divider />
 
       <Grid columns={1} stackable={true}>
@@ -259,7 +265,27 @@ class Product extends React.Component {
         <Grid.Column>
          {/* <CountryMap countryOfOrigin={productData.origin}/>  */}
         </Grid.Column>
+      </Grid>
 
+      <Grid columns={1} stackable={true}>
+        <Grid.Column>
+          <Segment>
+          <Header as='h1'>Product Categorization</Header>
+          <Grid columns={3} stackable={true} className="category-stats">
+            <Grid.Column>
+              <Statistic value={productData.primary_category ? productData.primary_category : 'N/A'} label='Primary Category' size='mini'/>
+            </Grid.Column>
+
+            <Grid.Column>
+             <Statistic value={productData.secondary_category ? productData.secondary_category : 'N/A'} label='Secondary Category' size='mini'/>
+            </Grid.Column>
+
+            <Grid.Column>
+             <Statistic value={productData.tertiary_category ? productData.tertiary_category  : 'N/A'} label='Tertiary Category' size='mini'/>
+            </Grid.Column>
+          </Grid>
+          </Segment>
+        </Grid.Column>
       </Grid>
 
       <Grid columns={2} stackable={true}>

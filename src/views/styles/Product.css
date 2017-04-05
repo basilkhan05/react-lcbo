@@ -33,6 +33,6 @@
 	font-size: 0.8em;
 }
 
-.inventory-stats > .column{
+.inventory-stats > .column, .category-stats > .column{
   text-align: center;
 }
