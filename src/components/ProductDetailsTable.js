@@ -22,11 +22,11 @@ class ProductDetailsTable extends React.Component {
             </Header>
           </Table.Cell>
           <Table.Cell>
-          <div>
-            {data.data == true ? 'Yes' : null}
-            {data.data == false ? 'No' : null}
-            {data.data !== 0 ? data.data : null}
-          </div>
+            <div>
+              {data.data === true ? 'Yes' : null}
+              {data.data === false ? 'No' : null}
+              {data.data !== 0 ? data.data : null}
+            </div>
           </Table.Cell>
         </Table.Row>
         : null

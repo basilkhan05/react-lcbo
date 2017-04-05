@@ -221,9 +221,9 @@ class Product extends React.Component {
           </Segment>
 
         </Grid.Column>
-        
-
       </Grid>
+
+      <Divider />
 
       <Grid columns={1} stackable={true}>
         <Grid.Column>
@@ -276,10 +276,6 @@ class Product extends React.Component {
             <ProductDetailsTable productInfoData={productIndicatorData} />
           </Segment>
           </Grid.Column>
-      </Grid>
-
-      <Grid columns={1} stackable={true}>
-          
       </Grid>
 
       </ReactCSSTransitionGroup>
