@@ -79,6 +79,39 @@ class Product extends React.Component {
         }
     ]
 
+    const productPromotionalData = [
+        {
+          description: 'Bonus Reward Miles',
+          long_description: null,
+          data: productData.bonus_reward_miles,
+          icon: null
+        },
+        {
+          description: 'Bonus Reward Miles Ends On',
+          long_description: null,
+          data: productData.bonus_reward_miles_ends_on,
+          icon: null
+        },
+        {
+          description: 'Has Bonus Reward Miles',
+          long_description: null,
+          data: productData.has_bonus_reward_miles,
+          icon: null
+        },
+        {
+          description: 'Has Limited Time Offer',
+          long_description: null,
+          data: productData.has_limited_time_offer,
+          icon: null
+        },
+        {
+          description: 'Has Value Added Promotion',
+          long_description: null,
+          data: productData.has_value_added_promotion,
+          icon: null
+        }
+    ]
+
     return (      
     <ReactCSSTransitionGroup
       transitionName="products"
@@ -153,7 +186,20 @@ class Product extends React.Component {
 
       </Grid>
 
-      <Divider />
+      <Header as='h1'>Inventory across all LCBO stores</Header>
+      <Grid columns={3} stackable={true} className="inventory-stats">
+        <Grid.Column>
+          <Statistic value={productData.inventory_count} label='Total units' />
+        </Grid.Column>
+
+        <Grid.Column>
+         <Statistic value={formatCurrency(productData.inventory_price_in_cents)} label='Total retail price of all units' />
+        </Grid.Column>
+
+        <Grid.Column>
+         <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
+        </Grid.Column>
+      </Grid>
 
       <Grid columns={1} stackable={true}>
           <Grid.Column>
@@ -166,24 +212,27 @@ class Product extends React.Component {
 
       <Grid columns={1} stackable={true}>
         <Grid.Column>
-          {/* <CountryMap countryOfOrigin={productData.origin}/> */}
+         {/* <CountryMap countryOfOrigin={productData.origin}/>  */}
         </Grid.Column>
 
       </Grid>
 
-      <Header as='h1'>Inventory across all LCBO stores</Header>
-      <Grid columns={3} stackable={true}>
-        <Grid.Column>
-          <Statistic value={productData.inventory_count} label='Total units' />
-        </Grid.Column>
+      <Grid columns={1} stackable={true}>
+          <Grid.Column>
+          <Segment>
+            <Header as='h2'>Promotional Product Information for {productData.name}</Header>
+            <ProductDetailsTable productInfoData={productPromotionalData} />
+          </Segment>
+          </Grid.Column>
+      </Grid>
 
-        <Grid.Column>
-         <Statistic value={formatCurrency(productData.inventory_price_in_cents)} label='Total retail price of all units' />
-        </Grid.Column>
-
-        <Grid.Column>
-         <Statistic value={formatVolume(productData.inventory_volume_in_milliliters)} label='Total volume of all units' />
-        </Grid.Column>
+      <Grid columns={1} stackable={true}>
+          <Grid.Column>
+          <Segment>
+            <Header as='h2'>Product Indicators for {productData.name}</Header>
+            <ProductDetailsTable productInfoData={productInfoData} />
+          </Segment>
+          </Grid.Column>
       </Grid>
 
       </ReactCSSTransitionGroup>

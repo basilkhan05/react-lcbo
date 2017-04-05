@@ -27,7 +27,12 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+
 .wasPrice{
 	color: red;
 	font-size: 0.8em;
+}
+
+.inventory-stats > .column{
+  text-align: center;
 }
