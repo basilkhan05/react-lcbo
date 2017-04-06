@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
-// import CountryMap from '../components/CountryMap'
+import CountryMap from '../components/CountryMap'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -113,12 +113,6 @@ class Product extends React.Component {
     ]
     
     const productIndicatorData = [
-        {
-          description: 'Product is Dead',
-          long_description: 'When products are removed from the LCBO catalog they are marked as “dead”',
-          data: productData.bonus_reward_miles,
-          icon: null
-        },
         {
           description: 'Product is Discontinued',
           long_description: 'Yes if the product has been marked as discontinued by the LCBO',
@@ -262,8 +256,8 @@ class Product extends React.Component {
       </Grid>
 
       <Grid columns={1} stackable={true}>
-        <Grid.Column>
-         {/* <CountryMap countryOfOrigin={productData.origin}/>  */}
+        <Grid.Column style={{width: '100%', height: '400px'}}>
+          <CountryMap countryOfOrigin={productData.origin} />
         </Grid.Column>
       </Grid>
 

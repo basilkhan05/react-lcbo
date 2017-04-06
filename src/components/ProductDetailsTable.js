@@ -25,7 +25,7 @@ class ProductDetailsTable extends React.Component {
             <div>
               {data.data === true ? 'Yes' : null}
               {data.data === false ? 'No' : null}
-              {data.data !== 0 ? data.data : null}
+              {data.data !== false || data.data !== true ? data.data : null}
             </div>
           </Table.Cell>
         </Table.Row>
