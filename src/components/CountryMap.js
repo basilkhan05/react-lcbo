@@ -38,33 +38,35 @@ const LocationPointer = ({ text }) => (
 class  CountryMap extends Component {
 
   componentDidMount(){
-    this.props.dispatch(fetchOrigin(this.props.countryOfOrigin));
+    const origin = this.props.countryOfOrigin ? this.props.countryOfOrigin.replace(", Region Not Specified", "") : null ;
+    this.props.dispatch(fetchOrigin(origin));
   }
 
   static defaultProps = {
-    center: {lat: 47.023950, lng: 8.211630},
     zoom: 6
   };
 
 render() {
 
-const { countryOfOrigin } = this.props;
+const { countryOfOrigin, originData } = this.props;
 
-const origin = countryOfOrigin ? countryOfOrigin.replace(", Region Not Specified", "") : null ;
+const center = this.props.originData.lat ? {lat: this.props.originData.lat, lng: this.props.originData.lon} : null;
 
   return(
-      
+    <span>
+    {center ? 
       <GoogleMapReact
-        defaultCenter={this.props.center}
+        defaultCenter={center}
         defaultZoom={this.props.zoom}
       >
         <LocationPointer 
-          lat={47.023950} 
-          lng={8.211630} 
-          text={origin}
+          lat={originData.lat} 
+          lng={originData.lon} 
+          text={originData.string}
         />
       </GoogleMapReact>
-
+    : null }
+    </span>
   )
    
 }

@@ -17,6 +17,7 @@ import { fetchProduct } from '../actions'
 const mapStateToProps = (store) => {
   return {
      product: store.products.product, 
+     product_details: store.products.product_details
   }
 }
 
@@ -28,6 +29,7 @@ class Product extends React.Component {
 
   render() {
     const productData = this.props.product;
+    const productDetails = this.props.product_details;
     const productPrice = productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'; 
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
@@ -259,7 +261,7 @@ class Product extends React.Component {
       <Header as='h1'>Region of Origin</Header>
         <Grid.Column style={{width: '100%', height: '400px'}}>
         {productData.origin ?
-          <CountryMap countryOfOrigin={productData.origin} dispatch={this.props.dispatch} />
+          <CountryMap countryOfOrigin={productData.origin} dispatch={this.props.dispatch} originData={productDetails.origin} />
           : null
         }
         </Grid.Column>
