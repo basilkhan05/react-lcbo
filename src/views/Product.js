@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
-// import CountryMap from '../components/CountryMap'
+import CountryMap from '../components/CountryMap'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -17,6 +17,7 @@ import { fetchProduct } from '../actions'
 const mapStateToProps = (store) => {
   return {
      product: store.products.product, 
+     product_details: store.products.product_details
   }
 }
 
@@ -28,6 +29,7 @@ class Product extends React.Component {
 
   render() {
     const productData = this.props.product;
+    const productDetails = this.props.product_details;
     const productPrice = productData.price_in_cents ? '$'+(productData.price_in_cents /100).toFixed(2): 'N/A'; 
     const wasPrice = (productData.regular_price_in_cents > productData.price_in_cents
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
@@ -113,12 +115,6 @@ class Product extends React.Component {
     ]
     
     const productIndicatorData = [
-        {
-          description: 'Product is Dead',
-          long_description: 'When products are removed from the LCBO catalog they are marked as “dead”',
-          data: productData.bonus_reward_miles,
-          icon: null
-        },
         {
           description: 'Product is Discontinued',
           long_description: 'Yes if the product has been marked as discontinued by the LCBO',
@@ -262,8 +258,12 @@ class Product extends React.Component {
       </Grid>
 
       <Grid columns={1} stackable={true}>
-        <Grid.Column>
-         {/* <CountryMap countryOfOrigin={productData.origin}/>  */}
+      <Header as='h1'>Region of Origin</Header>
+        <Grid.Column style={{width: '100%', height: '400px'}}>
+        {productData.origin ?
+          <CountryMap countryOfOrigin={productData.origin} dispatch={this.props.dispatch} originData={productDetails.origin} />
+          : null
+        }
         </Grid.Column>
       </Grid>
 
