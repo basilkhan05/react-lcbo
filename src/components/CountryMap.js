@@ -43,7 +43,7 @@ class  CountryMap extends Component {
   }
 
   static defaultProps = {
-    zoom: 6
+    zoom: 5
   };
 
 render() {
