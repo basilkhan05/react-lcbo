@@ -42,7 +42,7 @@ class ProductDetailsTable extends React.Component {
 }
 
 ProductDetailsTable.propTypes = {
-  productInfoData: PropTypes.object.isRequired,
+  productInfoData: PropTypes.array.isRequired,
 }
 
 export default ProductDetailsTable
