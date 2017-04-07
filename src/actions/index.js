@@ -48,6 +48,21 @@ export const fetchProduct = (id) => {
   }
 }
 
+export const fetchOrigin = (origin) => {
+  return function(dispatch){
+  		dispatch({type: "FETCH_ORIGIN_PENDING"})
+	    fetch(config.googleMapsApi+origin)
+	    .then((response) => {
+	    	response.json().then(function(data) {
+	    	dispatch({type: "FETCH_ORIGIN_FULFILLED", payload: data}) 
+	    	})
+	    })  
+	  .catch(function(err) {  
+	    dispatch({type: "FETCH_ORIGIN_REJECTED", payload: err}) 
+	  });
+  }
+}
+
 export const loadMoreProducts = (query, page) => {
 	console.log(query)
   return function(dispatch){

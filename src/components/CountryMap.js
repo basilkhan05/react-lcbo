@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import GoogleMapReact  from 'google-map-react'
 
-const K_CIRCLE_SIZE = 30;
-const K_STICK_SIZE = 10;
-const K_STICK_WIDTH = 3;
+import { fetchOrigin } from '../actions'
 
-const AnyReactComponent = ({ text }) => (
+const K_CIRCLE_SIZE = 30;
+
+const LocationPointer = ({ text }) => (
   <div style={{
   position: 'absolute',
   left: 0,
@@ -37,6 +37,10 @@ const AnyReactComponent = ({ text }) => (
 
 class  CountryMap extends Component {
 
+  componentDidMount(){
+    this.props.dispatch(fetchOrigin(this.props.countryOfOrigin));
+  }
+
   static defaultProps = {
     center: {lat: 47.023950, lng: 8.211630},
     zoom: 6
@@ -54,7 +58,7 @@ const origin = countryOfOrigin ? countryOfOrigin.replace(", Region Not Specified
         defaultCenter={this.props.center}
         defaultZoom={this.props.zoom}
       >
-        <AnyReactComponent 
+        <LocationPointer 
           lat={47.023950} 
           lng={8.211630} 
           text={origin}

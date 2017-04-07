@@ -9,6 +9,8 @@ const products = (state=productsInitialState, action) => {
 			return {...state, fetching: false, fetched: true, products: [...state.products.concat(action.payload.result)], pager: action.payload.pager }
 		case 'LOAD_MORE_PRODUCTS_REJECTED':
 			return {...state, fetching: false, error: action.payload}
+
+
 		// FETCH MULTIPLE PRODUCTS		
 		case 'FETCH_PRODUCTS_PENDING':
 			return {...state, fetching: true, loading: true}
@@ -16,6 +18,8 @@ const products = (state=productsInitialState, action) => {
 			return {...state, fetching: false, loading: false, fetched: true, products: action.payload.result, pager: action.payload.pager }
 		case 'FETCH_PRODUCTS_REJECTED':
 			return {...state, fetching: false, loading: false, error: action.payload, products: null}
+
+
 		// FETCH Single PRODUCT
 		case 'FETCH_PRODUCT_PENDING':
 			return {...state, fetching: true, loading: true, product: []}
@@ -24,6 +28,24 @@ const products = (state=productsInitialState, action) => {
 		case 'FETCH_PRODUCT_REJECTED':
 			return {...state, fetching: false, loading: false, error: action.payload}
 
+
+		// FETCH ORIGIN
+		case 'FETCH_ORIGIN_PENDING':
+			return {...state, origin_fetching: true}
+		case 'FETCH_ORIGIN_FULFILLED':
+			return {...state, origin_fetching: false, origin_fetched: true, product_details: {...state.product_details, 
+				origin: { 
+					string: action.payload.results[0].formatted_address,
+					lat: action.payload.results[0].geometry.location.lat,
+					lon: action.payload.results[0].geometry.location.lng
+				} 
+			} 
+		}
+		case 'FETCH_ORIGIN_REJECTED':
+			return {...state, origin_fetching: false, error: action.payload}
+
+
+		// RESET AND TOGGLE REDUCERS
 		case 'RESET_MS':
 			return {...state, 
 				products: []

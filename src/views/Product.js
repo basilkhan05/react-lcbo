@@ -256,8 +256,12 @@ class Product extends React.Component {
       </Grid>
 
       <Grid columns={1} stackable={true}>
+      <Header as='h1'>Region of Origin</Header>
         <Grid.Column style={{width: '100%', height: '400px'}}>
-          <CountryMap countryOfOrigin={productData.origin} />
+        {productData.origin ?
+          <CountryMap countryOfOrigin={productData.origin} dispatch={this.props.dispatch} />
+          : null
+        }
         </Grid.Column>
       </Grid>
 
