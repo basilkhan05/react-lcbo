@@ -1,13 +1,36 @@
 import React, { Component } from 'react'
 import GoogleMapReact  from 'google-map-react'
 
+const K_CIRCLE_SIZE = 30;
+const K_STICK_SIZE = 10;
+const K_STICK_WIDTH = 3;
 
 const AnyReactComponent = ({ text }) => (
   <div style={{
-    position: 'relative', color: '#6435C9', textShadow: '4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15)',
-    height: 40, width: 60, top: -20, left: -30, textAlign: 'center', fontSize: '1.5em'     
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  width: K_CIRCLE_SIZE,
+  height: K_CIRCLE_SIZE,
+  border: '3px solid #f44336',
+  borderRadius: K_CIRCLE_SIZE,
+  backgroundColor: 'white',
+  textAlign: 'center',
+  color: '#3f51b5',
+  fontSize: '4em',
+  fontWeight: 'bold',
+  padding: 0,
+  cursor: 'pointer',
+  boxShadow: '0 0 0 1px white'     
+  }}>
+  <div style={{
+    position: 'relative',
+    left: K_CIRCLE_SIZE,
+    letterSpacing: '.05em',
+    textShadow: '4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2)'
   }}>
     {text}
+  </div>
   </div>
 );
 
@@ -15,8 +38,8 @@ const AnyReactComponent = ({ text }) => (
 class  CountryMap extends Component {
 
   static defaultProps = {
-    center: {lat: 51.50, lng: 10.42},
-    zoom: 5
+    center: {lat: 47.023950, lng: 8.211630},
+    zoom: 6
   };
 
 render() {
@@ -32,8 +55,8 @@ const origin = countryOfOrigin ? countryOfOrigin.replace(", Region Not Specified
         defaultZoom={this.props.zoom}
       >
         <AnyReactComponent 
-          lat={51.504258} 
-          lng={10.4266633} 
+          lat={47.023950} 
+          lng={8.211630} 
           text={origin}
         />
       </GoogleMapReact>
