@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Image, Modal, Grid } from 'semantic-ui-react'
 import { money_status, moods } from '../utilities/moods'
 import './styles/MoodSelector.css'
@@ -61,6 +61,12 @@ const selectorOpen = this.props.all_moods.money_status_is_set && this.props.all_
 
 }
 
+}
+
+
+MoodSelector.propTypes = {
+  all_moods: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
 }
 
 export default MoodSelector

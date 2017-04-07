@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router';
 import { Card, Icon, Image } from 'semantic-ui-react'
 import noImage from '../../public/no-image.jpeg'
@@ -45,6 +45,10 @@ class ProductPreviewCard extends React.Component {
   </Link>
   );
   }
+}
+
+ProductPreviewCard.propTypes = {
+  productPreview: PropTypes.object.isRequired
 }
 
 export default ProductPreviewCard;

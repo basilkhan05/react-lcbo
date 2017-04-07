@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Header, Icon, Table } from 'semantic-ui-react'
 
 class ProductDetailsTable extends React.Component {
@@ -39,6 +39,10 @@ class ProductDetailsTable extends React.Component {
     </Table>
   )
 }
+}
+
+ProductDetailsTable.propTypes = {
+  productInfoData: PropTypes.object.isRequired,
 }
 
 export default ProductDetailsTable
