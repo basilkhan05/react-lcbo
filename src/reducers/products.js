@@ -31,7 +31,14 @@ const products = (state=productsInitialState, action) => {
 
 		// FETCH ORIGIN
 		case 'FETCH_ORIGIN_PENDING':
-			return {...state, origin_fetching: true}
+			return {...state, origin_fetching: true, product_details: {...state.product_details, 
+				origin: { 
+					string: '',
+					lat: null,
+					lon: null
+				} 
+			} 
+		}
 		case 'FETCH_ORIGIN_FULFILLED':
 			return {...state, origin_fetching: false, origin_fetched: true, product_details: {...state.product_details, 
 				origin: { 

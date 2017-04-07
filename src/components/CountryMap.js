@@ -48,7 +48,7 @@ class  CountryMap extends Component {
 
 render() {
 
-const { countryOfOrigin, originData } = this.props;
+const { originData } = this.props;
 
 const center = this.props.originData.lat ? {lat: this.props.originData.lat, lng: this.props.originData.lon} : null;
 
