@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
 import CountryMap from '../components/CountryMap'
+import InstagramSlider from '../components/InstagramSlider'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -245,6 +246,13 @@ class Product extends React.Component {
             </Grid.Column>
           </Grid>
           </Segment>
+        </Grid.Column>
+      </Grid>
+
+      <Grid columns={1} stackable={true}>
+      <Header as='h1'>Top Instagram Posts</Header>
+        <Grid.Column>
+          <InstagramSlider />
         </Grid.Column>
       </Grid>
 

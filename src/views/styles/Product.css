@@ -36,3 +36,7 @@
 .inventory-stats > .column, .category-stats > .column{
   text-align: center;
 }
+
+.slick-arrow, .slick-arrow:active, .slick-arrow:hover{
+  color: #000000 !important;
+}
