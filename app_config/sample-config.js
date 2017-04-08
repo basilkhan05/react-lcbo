@@ -6,5 +6,7 @@ var config = module.exports = {
 	// Production - basilkhan.ca
 	// access_token: "Token MDo1ZDk0MDM1YS0xOWFlLTExZTctYTUwNC1kYjA5NWI2YjkyMWE6a1hhQ09ibkJmdFNDQVVGWHNWQmp4ajlpSzNsYUptVU1zMjFB",
 
-	googleMapsApi: "http://maps.googleapis.com/maps/api/geocode/json?address="
+	googleMapsApi: "http://maps.googleapis.com/maps/api/geocode/json?address=",
+
+	instagramApi: "http://basilkhan.ca/projects/instagram/instagram.php"
 }
