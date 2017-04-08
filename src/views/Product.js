@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { Grid, Header, Image, Progress, Segment, Divider, Statistic, Loader, Dimmer } from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment, Divider, Statistic, Loader, Dimmer, Button } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
 import CountryMap from '../components/CountryMap'
 import InstagramSlider from '../components/InstagramSlider'
@@ -37,6 +37,8 @@ class Product extends React.Component {
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
                       : null);
     const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100;
+
+    const slug = productData.name ? productData.name.split(' ').join('-') : null;
 
     const productInfoData = [
         {
@@ -223,7 +225,7 @@ class Product extends React.Component {
 
       <Grid columns={1} stackable={true}>
         <Grid.Column>
-
+           <a href={"http://www.lcbo.com/lcbo/product/"+slug+"/"+productData.id } target="_blank"><Button fluid>VIEW IN LCBO</Button></a>
         </Grid.Column>
       </Grid>
 
