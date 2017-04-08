@@ -1,4 +1,4 @@
-#React LCBO
+# React LCBO
 
 This project takes the popular concept of Songza, and brings it to your local LCBO store. Simply choose the mood and your budget and the app will provides you with a selection of alcoholic beverages for a variety of occassions. 
 
@@ -26,6 +26,8 @@ git clone git@github.com:basilkhan05/react-lcbo.git
 cd react-lcbo
 npm install
 ```
+- Rename config file in app_confic/sample-config.js to config.js with API keys from LCBOapi.com 
+
 - Run Development Sever
 ```
 npm start
@@ -33,12 +35,12 @@ npm start
 - Checkout the application in action at http://localhost:3000/
 
 
-####Running Tests
+#### Running Tests
 ```
 npm test
 ```
 
-####Build Project 
+#### Build Project 
 ```
 npm run build
 ```
