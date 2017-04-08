@@ -252,7 +252,7 @@ class Product extends React.Component {
       <Grid columns={1} stackable={true}>
       <Header as='h1'>Top Instagram Posts</Header>
         <Grid.Column>
-          <InstagramSlider />
+          <InstagramSlider dispatch={this.props.dispatch} />
         </Grid.Column>
       </Grid>
 

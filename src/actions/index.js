@@ -11,6 +11,13 @@ var myInit = { method: 'GET',
 	           cache: 'default' 
 	       	};
 
+var instagramHeader = new Headers();
+instagramHeader.append("Content-Type", "application/json");
+// va = { method: 'GET',
+// 			   headers: instagramHeader,
+// 	           mode: 'cors'
+// 	       	};
+
 
 const createQstring = R.compose(
       R.concat('?'),
@@ -59,6 +66,21 @@ export const fetchOrigin = (origin) => {
 	    })  
 	  .catch(function(err) {  
 	    dispatch({type: "FETCH_ORIGIN_REJECTED", payload: err}) 
+	  });
+  }
+}
+
+export const fetchInstagrams = () => {
+  return function(dispatch){
+  		dispatch({type: "FETCH_INSTAGRAM_PENDING"})
+	    fetch("http://basilkhan.ca/projects/instagram/instagram.php")
+	    .then((response) => {
+	    	response.json().then(function(data) {
+	    	dispatch({type: "FETCH_INSTAGRAM_FULFILLED", payload: data}) 
+	    	})
+	    })  
+	  .catch(function(err) {  
+	    dispatch({type: "FETCH_INSTAGRAM_REJECTED", payload: err}) 
 	  });
   }
 }

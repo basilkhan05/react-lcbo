@@ -1,8 +1,13 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { fetchInstagrams } from '../actions'
 
 
 class InstagramSlider extends React.Component {
+
+	componentDidMount(){
+	    this.props.dispatch(fetchInstagrams());
+	  }
 
   render () {
     const settings = {
@@ -18,21 +23,21 @@ class InstagramSlider extends React.Component {
     }
     return (
       <Slider {...settings}>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
-        <div><img src='http://placekitten.com/g/400/200' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
+        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
 
       </Slider>
     );
