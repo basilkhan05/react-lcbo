@@ -38,5 +38,19 @@
 }
 
 .slick-arrow, .slick-arrow:active, .slick-arrow:hover{
-  color: #000000 !important;
+  color: red !important;
+}
+
+.slick-next:before, .slick-prev:before {
+  color: #000000;
+}
+
+.instagram-image{
+  height: 350px;
+  margin: 0 auto;
+}
+
+.instagram-image-container{
+  width: 350px;
+  overflow: hidden;
 }

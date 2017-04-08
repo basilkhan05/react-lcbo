@@ -11,13 +11,6 @@ var myInit = { method: 'GET',
 	           cache: 'default' 
 	       	};
 
-var instagramHeader = new Headers();
-instagramHeader.append("Content-Type", "application/json");
-// va = { method: 'GET',
-// 			   headers: instagramHeader,
-// 	           mode: 'cors'
-// 	       	};
-
 
 const createQstring = R.compose(
       R.concat('?'),

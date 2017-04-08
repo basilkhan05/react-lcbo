@@ -8,5 +8,5 @@ var config = module.exports = {
 
 	googleMapsApi: "http://maps.googleapis.com/maps/api/geocode/json?address=",
 
-	instagramApi: "https://www.instagram.com/explore/tags/"
+	instagramApi: "http://basilkhan.ca/projects/instagram/instagram.php"
 }

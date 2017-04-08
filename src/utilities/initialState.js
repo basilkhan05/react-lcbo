@@ -19,7 +19,8 @@ export const productsInitialState = {
 		},
 		instagrams: {
 			top_posts:[],
-			all_posts: []
+			all_posts: [],
+			pager: null
 		}
 	}
 }

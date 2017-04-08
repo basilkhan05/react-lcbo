@@ -21,25 +21,23 @@ class InstagramSlider extends React.Component {
 	      { breakpoint: 2000, settings: { slidesToShow: 3, slidesToScroll: 3 } }
       ]
     }
-    return (
-      <Slider {...settings}>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
-        <div><img src='http://placekitten.com/g/400/200' alt='hello world' /></div>
 
+    const { posts } = this.props;
+
+    const allPosts = (posts.all_posts.map((post, idx) => (
+        	<div key={idx} className="instagram-image-container">
+        		<img className="instagram-image" src={post.display_src} />
+        	</div>
+        )))
+
+    return (
+   	<span>
+    {posts.all_posts.length > 0 ?
+      <Slider {...settings}>
+	        {allPosts}
       </Slider>
+      : null}
+     </span>
     );
   }
 }

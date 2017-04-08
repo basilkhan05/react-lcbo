@@ -57,15 +57,20 @@ const products = (state=productsInitialState, action) => {
 			return {...state, instragram_fetching: true, product_details: {...state.product_details, 
 				instagrams: {
 						top_posts:[],
-						all_posts: []
+						all_posts: [],
+						pager: null
 					}
 			} 
 		}
 		case 'FETCH_INSTAGRAM_FULFILLED':
 			return {...state, instragram_fetching: false, instragram_fetched: true, product_details: {...state.product_details, 
 				instagrams: {
-						top_posts:[],
-						all_posts: []
+						top_posts:action.payload.tag.top_posts.nodes,
+						all_posts: action.payload.tag.media.nodes,
+						pager: {
+							count: action.payload.tag.media.count,
+							page_info: action.payload.tag.media.page_info,
+						}
 					}
 			} 
 		}
