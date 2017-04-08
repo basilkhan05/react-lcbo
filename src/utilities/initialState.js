@@ -4,6 +4,8 @@ export const productsInitialState = {
 	fetched: false,
 	origin_fetching: false,
 	origin_fetched: false, 
+	instagram_fetching: false,
+	instagram_fetched: false, 
 	products: [],
 	product: [],
 	error: null,
@@ -14,6 +16,11 @@ export const productsInitialState = {
 			string: '',
 			lat: null,
 			lon: null
+		},
+		instagrams: {
+			top_posts:[],
+			all_posts: [],
+			pager: null
 		}
 	}
 }

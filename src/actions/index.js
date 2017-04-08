@@ -63,6 +63,21 @@ export const fetchOrigin = (origin) => {
   }
 }
 
+export const fetchInstagrams = (hashtags) => {
+  return function(dispatch){
+  		dispatch({type: "FETCH_INSTAGRAM_PENDING"})
+	    fetch(config.instagramApi + '?hashtags='+ hashtags)
+	    .then((response) => {
+	    	response.json().then(function(data) {
+	    	dispatch({type: "FETCH_INSTAGRAM_FULFILLED", payload: data}) 
+	    	})
+	    })  
+	  .catch(function(err) {  
+	    dispatch({type: "FETCH_INSTAGRAM_REJECTED", payload: err}) 
+	  });
+  }
+}
+
 export const loadMoreProducts = (query, page) => {
 	console.log(query)
   return function(dispatch){

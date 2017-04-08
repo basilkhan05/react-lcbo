@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment, Divider, Statistic, Loader, Dimmer, Button } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
 import CountryMap from '../components/CountryMap'
+import InstagramSlider from '../components/InstagramSlider'
 
 import './styles/Product.css'
 import noImage from '../../public/no-image.jpeg'
@@ -17,7 +18,8 @@ import { fetchProduct } from '../actions'
 const mapStateToProps = (store) => {
   return {
      product: store.products.product, 
-     product_details: store.products.product_details
+     product_details: store.products.product_details,
+     instragram_fetching: store.products.instragram_fetching
   }
 }
 
@@ -35,6 +37,8 @@ class Product extends React.Component {
                       ? ' (Was $' + productData.regular_price_in_cents /100 +')'
                       : null);
     const funkyPricePercent = (Math.log(productData.price_in_cents/100) / Math.log(35000))*100;
+
+    const slug = productData.name ? productData.name.split(' ').join('-') : null;
 
     const productInfoData = [
         {
@@ -221,7 +225,7 @@ class Product extends React.Component {
 
       <Grid columns={1} stackable={true}>
         <Grid.Column>
-
+           <a href={"http://www.lcbo.com/lcbo/product/"+slug+"/"+productData.id } target="_blank"><Button fluid>VIEW IN LCBO</Button></a>
         </Grid.Column>
       </Grid>
 
@@ -246,6 +250,22 @@ class Product extends React.Component {
           </Grid>
           </Segment>
         </Grid.Column>
+      </Grid>
+
+      <Grid columns={1} stackable={true}>
+      <Header as='h1'>Top Instagram Posts</Header>
+        {productData.name ?
+          <Grid.Column>
+          {this.props.instragram_fetching ?
+          <Dimmer active>
+            <Loader content='Loading' />
+          </Dimmer>
+          : null}
+            <InstagramSlider dispatch={this.props.dispatch} posts={productDetails.instagrams} tags={productData.name} />
+          </Grid.Column>
+          : 
+         null
+        }
       </Grid>
 
       <Grid columns={1} stackable={true}>

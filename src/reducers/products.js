@@ -49,7 +49,34 @@ const products = (state=productsInitialState, action) => {
 			} 
 		}
 		case 'FETCH_ORIGIN_REJECTED':
+			return {...state, origin_fetching: false, error: action.payload, }
+
+
+		// FETCH Instagram
+		case 'FETCH_INSTAGRAM_PENDING':
+			return {...state, instragram_fetching: true	, product_details: {...state.product_details, 
+				instagrams: {
+						top_posts:[],
+						all_posts: [],
+						pager: null
+					}
+			} 
+		}
+		case 'FETCH_INSTAGRAM_FULFILLED':
+			return {...state, instragram_fetching: false, instragram_fetched: true, product_details: {...state.product_details, 
+				instagrams: {
+						top_posts:action.payload.tag.top_posts.nodes,
+						all_posts: action.payload.tag.media.nodes,
+						pager: {
+							count: action.payload.tag.media.count,
+							page_info: action.payload.tag.media.page_info,
+						}
+					}
+			} 
+		}
+		case 'FETCH_INSTAGRAM_REJECTED':
 			return {...state, origin_fetching: false, error: action.payload}
+
 
 
 		// RESET AND TOGGLE REDUCERS
