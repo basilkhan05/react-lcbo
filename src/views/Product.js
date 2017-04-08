@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux"
 
-import { Grid, Header, Image, Progress, Segment, Divider, Statistic } from 'semantic-ui-react'
+import { Grid, Header, Image, Progress, Segment, Divider, Statistic, Loader, Dimmer } from 'semantic-ui-react'
 import ProductDetailsTable from '../components/ProductDetailsTable'
 import CountryMap from '../components/CountryMap'
 import InstagramSlider from '../components/InstagramSlider'
@@ -18,7 +18,8 @@ import { fetchProduct } from '../actions'
 const mapStateToProps = (store) => {
   return {
      product: store.products.product, 
-     product_details: store.products.product_details
+     product_details: store.products.product_details,
+     instragram_fetching: store.products.instragram_fetching
   }
 }
 
@@ -251,9 +252,18 @@ class Product extends React.Component {
 
       <Grid columns={1} stackable={true}>
       <Header as='h1'>Top Instagram Posts</Header>
-        <Grid.Column>
-          <InstagramSlider dispatch={this.props.dispatch} posts={productDetails.instagrams} />
-        </Grid.Column>
+        {productData.name ?
+          <Grid.Column>
+          {this.props.instragram_fetching ?
+          <Dimmer active>
+            <Loader content='Loading' />
+          </Dimmer>
+          : null}
+            <InstagramSlider dispatch={this.props.dispatch} posts={productDetails.instagrams} tags={productData.name} />
+          </Grid.Column>
+          : 
+         null
+        }
       </Grid>
 
       <Grid columns={1} stackable={true}>

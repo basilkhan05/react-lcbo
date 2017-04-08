@@ -49,12 +49,12 @@ const products = (state=productsInitialState, action) => {
 			} 
 		}
 		case 'FETCH_ORIGIN_REJECTED':
-			return {...state, origin_fetching: false, error: action.payload}
+			return {...state, origin_fetching: false, error: action.payload, }
 
 
 		// FETCH Instagram
 		case 'FETCH_INSTAGRAM_PENDING':
-			return {...state, instragram_fetching: true, product_details: {...state.product_details, 
+			return {...state, instragram_fetching: true	, product_details: {...state.product_details, 
 				instagrams: {
 						top_posts:[],
 						all_posts: [],

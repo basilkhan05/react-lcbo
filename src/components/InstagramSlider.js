@@ -6,8 +6,10 @@ import { fetchInstagrams } from '../actions'
 class InstagramSlider extends React.Component {
 
 	componentDidMount(){
-	    this.props.dispatch(fetchInstagrams());
-	  }
+		const hastags = this.props.tags ? this.props.tags.split(" ") : null;
+		const hashtag = hastags ? hastags.slice(0,2).join('') : null;
+	    this.props.dispatch(fetchInstagrams(hashtag));
+	}
 
   render () {
     const settings = {
@@ -24,9 +26,19 @@ class InstagramSlider extends React.Component {
 
     const { posts } = this.props;
 
+    const topPosts = (posts.top_posts.map((post, idx) => (
+        	<div key={idx+'_top'} className="instagram-image-container">
+	        	<a href={"https://www.instagram.com/p/"+post.code} target="_blank">
+	        		<img className="instagram-image" src={post.display_src} alt={post.caption} />
+	        	</a>
+        	</div>
+        )))
+
     const allPosts = (posts.all_posts.map((post, idx) => (
-        	<div key={idx} className="instagram-image-container">
-        		<img className="instagram-image" src={post.display_src} />
+        	<div key={idx+'_all'} className="instagram-image-container">
+        		<a href={"https://www.instagram.com/p/"+post.code} target="_blank">
+        			<img className="instagram-image" src={post.display_src} alt={post.caption} />
+        		</a>
         	</div>
         )))
 
@@ -34,9 +46,10 @@ class InstagramSlider extends React.Component {
    	<span>
     {posts.all_posts.length > 0 ?
       <Slider {...settings}>
+      		{topPosts}
 	        {allPosts}
       </Slider>
-      : null}
+      : <h3> No Social Media Images Found </h3> }
      </span>
     );
   }
